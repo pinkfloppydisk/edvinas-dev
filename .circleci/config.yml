@@ -9,25 +9,13 @@ jobs:
     environment:
       GH_SRC_BRANCH: master
       GH_DST_BRANCH: gh-pages
-      GH_DOMAIN: edvinas.dev
 
     docker:
-      - image: circleci/node:10.0
+      - image: cibuilds/hugo:0.55.6
 
     working_directory: ~/repo
 
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-
-      - run: npm install
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      - run: npm run build
+      - run: hugo --verbose --minify
       - run: ./deploy.sh
