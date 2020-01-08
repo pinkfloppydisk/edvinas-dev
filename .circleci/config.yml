@@ -11,7 +11,7 @@ jobs:
       GH_DST_BRANCH: gh-pages
 
     docker:
-      - image: cibuilds/hugo:0.55.6
+      - image: cibuilds/hugo:0.62.2
 
     working_directory: ~/repo
 
