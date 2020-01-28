@@ -22,23 +22,19 @@
       </style>
     {{ end }}
 
-    {{ if isset .Params "title" }}
-      <title>
-        {{ .Params.title }}
-      </title>
-    {{ else }}
-      <title>
-        {{ .Site.Params.name }}
-      </title>
-    {{ end }}
+    <title>
+      {{ .Params.title }} | {{ .Site.Params.name }}
+    </title>
   </head>
   <body>
     <header class="navigation">
       <h1>
-        <a
-          href="{{ .Site.Home.RelPermalink }}"
-          title="{{ .Site.Home.Params.title }} page"
-        >{{ .Site.Params.name }}</a>
+        {{ with .Site.Home }}
+          <a
+            href="{{ .RelPermalink }}"
+            title="{{ .Params.title }} page"
+          >{{ .Site.Params.name }}</a>
+        {{ end }}
       </h1>
       <nav>
         {{ range (union .Site.Sections (where .Site.Pages "Type" "page")) }}

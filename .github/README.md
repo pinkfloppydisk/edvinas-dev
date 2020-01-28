@@ -2,7 +2,7 @@
 Minimalistic, portfolio, programming, blog site.
 
 ## Prerequisites
-Make sure you have [Hugo 0.62.2](https://gohugo.io/getting-started/installing) installed.
+Make sure you have [Hugo 0.63.2](https://gohugo.io/getting-started/installing) installed.
 
 ## Commands
 Run a development server on `localhost:8080`:

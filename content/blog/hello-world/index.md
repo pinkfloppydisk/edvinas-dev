@@ -15,7 +15,6 @@ In this first post, I'll talk about how I came about setting up this whole thing
 Making a simple site is actually quite easy - just grab a few `.html` and `.css` files, drop them on a server, and you're done. However, that won't suffice in the long run. For example if you plan on having a fancy header, footer and alike, you'll have to copy that content over and over again. Furthermore, it would be wise to compress that content to reduce the load for your readers. Doing all of this by hand is not fun.
 
 So to achieve that, I need the following:
-
 * As little JavaScript as possible - avoid support issues across different browsers.
 * Static content compression tool - squeeze out as much performance as possible.
 * Something for templating - avoid copying stuff.
@@ -31,7 +30,6 @@ Finally, I decided to try out [Hugo](https://gohugo.io "Hugo site"). I was a bit
 
 ### Hugo
 I won't go into much technical details as the documentation is quite good, so I think there's no reason for that. However, I'd like to mention a few things:
-
 * I was surprised on how easy it was to install. I'm sitting on Ubuntu at the moment, so `snap install hugo` and done.
 * Secondly, I was really happy to have literally zero JavaScript dependencies in my project. It's quite refreshing not having to be force fed with layers and layers of broken libraries.
 * It includes tonnes of features, starting from built in syntax highlighting and finishing with full-blown commenting systems.

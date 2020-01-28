@@ -8,4 +8,4 @@ I like clean, structured and tested code. Static analysis and automation tools w
 
 [GitHub]: https://github.com/Edvinas01 "My GitHub profile"
 
-If you have some suggestions or just want to chat, contact me via one of the emails I use on [GitHub].
+If you have some suggestions or just want to chat, contact me via [GitHub].

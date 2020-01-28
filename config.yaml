@@ -9,13 +9,9 @@ languageCode: en-us
 baseURL: https://edvinas.dev
 
 markup:
-
-  # TODO: use Goldmark once it has hrefTargetBlank feature.
-  defaultMarkdownHandler: blackFriday
-
-  blackFriday:
-    hrefTargetBlank: true
-    noreferrerLinks: true
+  goldmark:
+    renderer:
+      xHTML: true
 
 params:
   description: Programming, music and other relevant things

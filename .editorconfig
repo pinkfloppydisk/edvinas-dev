@@ -8,3 +8,6 @@ indent_style = space
 end_of_line = lf
 indent_size = 2
 charset = utf-8
+
+[layouts/_default/_markup/render-link.html]
+insert_final_newline = false

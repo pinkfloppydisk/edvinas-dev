@@ -7,7 +7,6 @@ title: Thanks
 [Josh]: https://jrl.ninja "Josh's webpage"
 
 When working on this site I used content and articles by these guys:
-
 - [Dovydas Reitelaitis] - the site picture.
 - [Jeremy Thomas] - great article on web design.
 - [Josh] - inspiration for this site.
