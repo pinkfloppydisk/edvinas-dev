@@ -6,13 +6,14 @@ html {
 }
 
 body {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: sans-serif;
   line-height: 1.5;
 
   background-color: #fffaf7;
   color: #555;
 
-  max-width: 45em;
+  max-width: 40em;
+  font-size: 18px;
   padding: 1em;
   margin: 0 auto;
 }
@@ -25,12 +26,18 @@ header {
 
 /* Main page header, navigation */
 .navigation {
+  display: flex;
+  display: -webkit-flex;
+
   justify-content: space-between;
   align-items: center;
   flex-flow: row wrap;
-  display: flex;
 
   margin-bottom: 4em;
+}
+
+.navigation h1 {
+  padding-right: 1rem;
 }
 
 nav a:not(:last-child) {
@@ -40,7 +47,8 @@ nav a:not(:last-child) {
 /* Headings */
 h1,
 h2,
-h3 {
+h3,
+h4 {
   font-weight: 500;
   color: #333;
 }
@@ -73,6 +81,10 @@ h3 {
   font-size: 1.17em;
 }
 
+h4 {
+  font-style: italic;
+}
+
 /* Links */
 a {
   text-decoration: none;
@@ -99,19 +111,31 @@ pre {
   padding: 1em;
 }
 
-/* Image lists */
+/* Gallery */
 .gallery {
-  justify-content: space-between;
-  display: flex;
   margin: 1em 0;
 }
 
 .gallery img {
+  margin-bottom: 0.5em;
   width: 100%;
 }
 
-.gallery img:not(:last-child) {
-  margin-right: 1em;
+@media only screen and (min-width: 480px) {
+
+  .gallery {
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    margin: 0 -0.5em;
+  }
+
+  .gallery img {
+    object-fit: cover;
+    margin-bottom: 0;
+    padding: 0.5em;
+    flex: calc(100% / 3 - 2em);
+  }
 }
 
 /* Article list */

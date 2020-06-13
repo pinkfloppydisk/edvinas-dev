@@ -16,11 +16,6 @@ Up until I was 14 years old or so, I wasn't interested in music. However, things
 
 At that time the only band I was familiar with was Digitalism. The first song of that caught my ear was Pogo. Afterwards I got addicted to another one of their tracks named Echoes. When working on some levels, I had to play the corresponding track from this band, its as if what I was working on and the music belonged together.
 
-{{<
-  gallery
-  "band_digitalism.jpg" "Digitalism band logo with a reflection"
->}}
-
 Later on one of my friends introduced me to a band called Justice. From that point on I found out about Daft Punk, Crydamoure, Ed Banger Records and other funky Disco/French House artists.
 
 ### DJ mixes
