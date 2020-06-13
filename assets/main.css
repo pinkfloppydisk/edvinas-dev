@@ -105,20 +105,31 @@ pre {
   padding: 1em;
 }
 
-/* Image list */
+/* Gallery */
 .gallery {
-  display: flex;
-  display: -webkit-flex;
-
-  flex-wrap: wrap;
-  justify-content: flex-start;
-
-  margin-bottom: -1em;
+  margin: 1em 0;
 }
 
 .gallery img {
-  flex: 100%;
-  padding-bottom: 1em;
+  margin-bottom: 0.5em;
+  width: 100%;
+}
+
+@media only screen and (min-width: 480px) {
+
+  .gallery {
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    margin: 0 -0.5em;
+  }
+
+  .gallery img {
+    object-fit: cover;
+    margin-bottom: 0;
+    padding: 0.5em;
+    flex: calc(100% / 3 - 2em);
+  }
 }
 
 /* Article list */
@@ -129,17 +140,4 @@ pre {
 /* Misc */
 time {
   color: #888;
-}
-
-/* Desktop can display bigger gallery. */
-@media only screen and (min-width: 768px) {
-
-  .gallery img {
-    max-width: calc(100%/3 - 1em);
-    flex: calc(100%/3 - 1em);
-  }
-
-  .gallery img:not(:nth-child(3n)) {
-    margin-right: 1em;
-  }
 }
