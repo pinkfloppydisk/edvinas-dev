@@ -25,12 +25,18 @@ header {
 
 /* Main page header, navigation */
 .navigation {
+  display: flex;
+  display: -webkit-flex;
+
   justify-content: space-between;
   align-items: center;
   flex-flow: row wrap;
-  display: flex;
 
   margin-bottom: 4em;
+}
+
+.navigation h1 {
+  padding-right: 1rem;
 }
 
 nav a:not(:last-child) {
@@ -99,19 +105,20 @@ pre {
   padding: 1em;
 }
 
-/* Image lists */
+/* Image list */
 .gallery {
-  justify-content: space-between;
   display: flex;
-  margin: 1em 0;
+  display: -webkit-flex;
+
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  margin-bottom: -1em;
 }
 
 .gallery img {
-  width: 100%;
-}
-
-.gallery img:not(:last-child) {
-  margin-right: 1em;
+  flex: 100%;
+  padding-bottom: 1em;
 }
 
 /* Article list */
@@ -122,4 +129,17 @@ pre {
 /* Misc */
 time {
   color: #888;
+}
+
+/* Desktop can display bigger gallery. */
+@media only screen and (min-width: 768px) {
+
+  .gallery img {
+    max-width: calc(100%/3 - 1em);
+    flex: calc(100%/3 - 1em);
+  }
+
+  .gallery img:not(:nth-child(3n)) {
+    margin-right: 1em;
+  }
 }
