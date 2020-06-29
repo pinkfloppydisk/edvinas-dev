@@ -41,4 +41,4 @@ The only gripe I have about it is the template resolution. It is very implicit. 
 ### Final notes
 I'm quite happy with the current setup and the tooling choice. I'll continue to improve it and will get into more details later on.
 
-Also, one thing that I didn't mention was that I've also setup automatic deployments. Basically `git push` and a new site is up after a few seconds. If you're curious about all those details, you can checkout the source on [GitHub](https://github.com/Edvinas01/edds "Source on GitHub").
+Also, one thing that I didn't mention was that I've also setup automatic deployments. Basically `git push` and a new site is up after a few seconds. If you're curious about all those details, you can checkout the source on [GitHub](https://github.com/Edvinas01/edvinas-dev "Source on GitHub").

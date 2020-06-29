@@ -13,7 +13,7 @@ images:
 >}}
 
 ### Intro
-Few months ago I've decided to try out VR game development and get back to Unity. The whole development process was enticing and immersive given the medium. In the end, I spent around one month developing the game, including using mostly custom assets. The final result, including the source can be fetched from [GitHub](https://github.com/Edvinas01/sandstone).
+Few months ago I've decided to try out VR game development and get back to Unity. The whole development process was enticing and immersive given the medium. In the end, I spent around one month developing the game, including using mostly custom assets. The final result, including the source can be fetched from [GitHub](https://github.com/Edvinas01/sandstone) and development videos can be seen on [YouTube](https://www.youtube.com/watch?v=_W-vntH3DtA&list=PL5No3sH5hcxuScdA7-g1GKy3GJAa7cJrb).
 
 While working on this project, I've encountered quite a few annoyances that I'd like to avoid in the future. In contrast, some experiences were fun and insightful which I would like to talk about as well. The purpose of this post (and upcoming ones) is to document these points and learn from them for future projects.
 
