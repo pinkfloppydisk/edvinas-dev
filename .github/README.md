@@ -1,8 +1,8 @@
-# Edds ![GitHub pages deployment badge](https://github.com/Edvinas01/edds/workflows/GitHub%20Pages/badge.svg)
+# edvinas.dev ![GitHub pages deployment badge](https://github.com/Edvinas01/edvinas-dev/workflows/GitHub%20Pages/badge.svg)
 Minimalistic, portfolio, programming, blog site.
 
 ## Prerequisites
-Make sure you have [Hugo 0.63.2](https://gohugo.io/getting-started/installing) installed.
+Make sure you have [Hugo](https://gohugo.io/getting-started/installing) installed and that your version matches the one specified in [gh-pages.yml](https://github.com/Edvinas01/edvinas-dev/blob/master/.github/workflows/gh-pages.yml#L19).
 
 ## Commands
 Run a development server on `localhost:8080`:
