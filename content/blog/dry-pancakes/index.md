@@ -4,7 +4,7 @@ title: Dry pancakes
 date: 2020-07-21
 
 images:
-  - /blog/pancakes/prepared_pretty.jpg
+  - /blog/dry-pancakes/prepared_pretty.jpg
 ---
 
 {{<
