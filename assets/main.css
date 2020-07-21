@@ -117,7 +117,9 @@ pre {
 }
 
 .gallery img {
-  margin-bottom: 0.5em;
+  margin-bottom: 1em;
+  box-shadow: 0 0.3rem 0.7rem rgba(0, 0, 0, 0.2);
+  display: block;
   width: 100%;
 }
 
@@ -127,13 +129,12 @@ pre {
     display: flex;
     display: -webkit-flex;
     flex-wrap: wrap;
-    margin: 0 -0.5em;
+    margin: 1em -0.5em;
   }
 
   .gallery img {
     object-fit: cover;
-    margin-bottom: 0;
-    padding: 0.5em;
+    margin: 0 0.5em 1em;
     flex: calc(100% / 3 - 2em);
   }
 }
