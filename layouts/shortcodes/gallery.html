@@ -6,6 +6,6 @@
     {{ $src := $.Get (mul $idx 2) }}
     {{ $txt := $.Get (add (mul $idx 2) 1)}}
 
-    <img src="{{ $src }}" title="{{ $txt }}" alt="{{ $txt }}" />
+    <img src="{{ $src }}" title="{{ $txt }}" alt="{{ $txt }}" loading="lazy" />
   {{ end }}
 </div>
