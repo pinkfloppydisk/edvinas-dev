@@ -14,5 +14,6 @@ images:
 
 * VR framework choice
 * something about small scene
-* custom hands
+  * mini island importance
+* custom hand pickup script
 * organization (naming n such)
