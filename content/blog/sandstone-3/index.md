@@ -1,6 +1,7 @@
 ---
 description: TODO
 title: Sandstone - part 3
+draft: true
 date: 2020-07-06
 
 images:
