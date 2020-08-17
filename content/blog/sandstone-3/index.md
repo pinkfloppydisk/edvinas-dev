@@ -14,12 +14,7 @@ images:
 >}}
 
 ### Intro
-TODO
-
-### Only eyed pirate
-When starting this project I set out to experiment with Universal Render Pipeline (URP). This was a great decision as I was able to experiment with shader graphs. Usually I avoid making shaders, however working with shader graphs was a bliss.
-
-However with Oculus Integration, I've encountered an issue where only one eye would render the scene. This was resolved by using Single Pass rendering.
+[part 2]({{< relref "blog/sandstone-2" >}})
 
 ### Baking lighting
 I spent a lot of time trying to get lighting right. Using real-time lighting I was having difficulties illuminating darker areas and the end result was always bland, thus I decided to use real-time lights in combination with baked global illumination.
@@ -49,9 +44,6 @@ Unity is able to Generate Lightmap UVs automatically via model import settings. 
 
 ### Real-time lighting
 Using real-time lighting was a must for this project as the player is able to pick up objects which emit light. The biggest problem here was getting the shadows to work right.
-
-#### Point lights
-The biggest downside to using current version of URP is inability to use real-time shadows with point lights. I didn't pay enough attention to documentation and skipped this step. Due to this I had to deal with _leaking_ point lights through walls and found no way around it.
 
 #### Shadow quality
 {{<

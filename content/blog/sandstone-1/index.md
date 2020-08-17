@@ -64,4 +64,4 @@ All the sounds are from external sources. I had quite a lot of luck finding what
 ### Closing notes
 Overall, working with VR and Unity on this project was a pleasant and refreshing experience. Most issues I stumbled upon fall flat given the immersive development environment which is possible only with VR. It is extremely satisfying being able to naturally pick up and interact with objects and environments that you create. I urge anyone with a VR headset to play around with Unity.
 
-In next post, I'll go into the project setup, VR library choices and other technical details.
+In [part 2](/blog/sandstone-2), I go into the project setup, VR library choices and other technical details.
