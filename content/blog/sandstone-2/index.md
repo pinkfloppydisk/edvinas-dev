@@ -46,7 +46,10 @@ Later on in the development process I wanted experiment a bit with custom hand i
 One more thing that caused some issues was the usage of URP. In some cases shaders and particle effects would only render for one eye. I was able to work around this by using Single Pass rendering.
 
 ### Testing scenes
-TODO: insert pic of mini island
+{{<
+  gallery
+  "mini_island.jpg" "Mini island scene"
+>}}
 
 For this project I was building a large world. Initially I would test everything in the main scene which was massive. To reach certain areas and test features it would take minutes. To solve this issue I brought all the interactions right next to the spawn point in order to speed up the process, however as the project continued I quickly noticed that I would break things in the main scene and would not notice that.
 
@@ -55,7 +58,10 @@ Later on I made the [MiniIslandScene](https://github.com/Edvinas01/sandstone/blo
 When testing out smaller features, I started to set up even smaller scenes which would not require me to use a VR headset at all. For example the [PrototypeScene](https://github.com/Edvinas01/sandstone/blob/master/Assets/Scenes/PrototypeScene.unity). This also sped up the development process quite a lot as it is quite time-consuming and annoying having to put on the head-set each time you make a tiny change.
 
 ### Organizing
-TODO: insert pic of hierarchy and asset view
+{{<
+  gallery
+  "hierarchy_objects.jpg" "Hierarchy and inspector view"
+>}}
 
 For any type of project I find that organizing code (naming, style) and assets (folder naming and structure) is the most important part. For Unity, I find this to be even more true as a lot of work has to be done through the UI.
 
