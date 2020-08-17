@@ -10,7 +10,7 @@ images:
 
 {{<
   gallery
-  "screenshot.png" "Screenshot of the main scene with exposed internals"
+  "screenshot.jpg" "Screenshot of the main scene with exposed internals"
 >}}
 
 ### Intro
@@ -27,7 +27,7 @@ First issue was that baking would never finish, the editor reported that it woul
 #### Artifacts
 {{<
   gallery
-  "artifacts-backface.png" "Artifacts caused by using too high Backface Tolerance value"
+  "artifacts-backface.jpg" "Artifacts caused by using too high Backface Tolerance value"
 >}}
 
 Using a lower scale introduced a lot of artifacts. For example some objects such as rocks would be baked incorrectly and their edges would either glow extremely brightly or be too dark while in direct sunlight. The root cause was that Backface Tolerance was set too high under Lightmap Parameters. I've experimented with multiple values for this setting, however in the end I had to use a value of `0` to eliminate most of the artifacts, however some still remained. This also increased the baking time a bit.
@@ -35,7 +35,7 @@ Using a lower scale introduced a lot of artifacts. For example some objects such
 #### Overlapping UVs
 {{<
   gallery
-  "artifacts-uv.png" "Artifacts caused by bad UV mapping"
+  "artifacts-uv.jpg" "Artifacts caused by bad UV mapping"
 >}}
 
 Most of the models were custom made in Blender. Since I'm terrible at modeling, I stuck to a minimalistic low-poly style. The hardest part in modeling for me was UV mapping. Due to this, I mostly used Smart UV Project functionality which generates a UV map automatically. This was fine until I started baking lighting and had already made half of the models. Having improper UV maps causes UV map overlapping which creates dark areas around the edges of objects. Ultimately this is caused by overlapping UVs.
@@ -48,8 +48,8 @@ Using real-time lighting was a must for this project as the player is able to pi
 #### Shadow quality
 {{<
   gallery
-  "shadows-low-ql.png" "Low quality shadows"
-  "shadows-stripes.png" "Striped shadows"
+  "shadows-low-ql.jpg" "Low quality shadows"
+  "shadows-stripes.jpg" "Striped shadows"
 >}}
 
 Shadow quality was a major pain to get right. The biggest issue initially was rough, pixelated shadows. I was able to resolve this by enabling Soft Shadows and using Four Cascades.
@@ -59,7 +59,7 @@ Another issue was having stripes over the shadows. This one was easy to resolve 
 #### Leaky shadows
 {{<
   gallery
-  "shadows-stripes.png" "Shadows leaking light"
+  "shadows-stripes.jpg" "Shadows leaking light"
 >}}
 
 Since I was trying to follow a low-poly aesthetic, I found that simply using no smoothing groups on the models yields nice results. However this causes _gaps_ in between the triangles when they're lit by real-time lights. In order to fix this, I edited each model to use  smoothing groups in Blender and instead used a [shader](https://github.com/Edvinas01/sandstone/blob/master/Assets/Shaders/Shader%20Graphs/Low%20Poly.shadergraph) to achieve the low-poly aesthetic.
@@ -67,8 +67,8 @@ Since I was trying to follow a low-poly aesthetic, I found that simply using no 
 #### Dynamic objects
 {{<
   gallery
-  "objects.png" "Incorrectly lit dynamic objects"
-  "objects-probes.png" "Pyramid with light probes"
+  "objects.jpg" "Incorrectly lit dynamic objects"
+  "objects-probes.jpg" "Pyramid with light probes"
 >}}
 
 When mixing baked and real-time lighting, dynamic objects require additional information in order to be lit correctly. This was due to not using Light Probes. Setting up Light Probes in Unity is painful, to reduce this pain I've used the [Simple Light Probe Placer](https://assetstore.unity.com/packages/tools/simple-light-probe-placer-58290) asset. It was still quite messy even when using the asset as I had to go and tweak each Light Probe Group manually so none of the probes protrude the terrain, however this sped up the the whole process immensely.
