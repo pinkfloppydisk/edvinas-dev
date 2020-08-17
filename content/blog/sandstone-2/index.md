@@ -45,14 +45,14 @@ Later on in the development process I wanted experiment a bit with custom hand i
 One more thing that caused some issues with Oculus Integration was the usage of URP. In some cases shaders and particle effects would only render for one eye. I was able to work around this by using Single Pass rendering.
 
 ### Testing scenes
+Initially I would test everything in the main scene which is a massive flying island. To reach certain areas and test features it used to take minutes. To solve this issue I moved all the intractable objects right next to the spawn point in order to speed up the process. However, as the project continued I quickly noticed that I would break things in the main scene and would not notice that.
+
+#### Miniaturized island
 {{<
   gallery
   "mini_island.jpg" "Mini island scene"
 >}}
 
-Initially I would test everything in the main scene which is a massive flying island. To reach certain areas and test features it used to take minutes. To solve this issue I moved all the intractable objects right next to the spawn point in order to speed up the process. However, as the project continued I quickly noticed that I would break things in the main scene and would not notice that.
-
-#### Miniaturized island
 Later on I created [MiniIslandScene](https://github.com/Edvinas01/sandstone/blob/master/Assets/Scenes/MiniIslandScene.unity) for rapidly testing all the games features. It is essentially the same main scene, except greatly scaled down and with fewer objects. During development process I would constantly break various features in this scene without noticing as previously in the main one, yet this time I would fall-back to the main scene and revert broken features if such an event occurred.
 
 #### Git

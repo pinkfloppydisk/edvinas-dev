@@ -98,13 +98,16 @@ a:hover {
 /* Code and formatted blocks */
 code,
 pre {
+  box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
   background: #eee;
+}
+
+pre > code {
+  box-shadow: none;
 }
 
 code {
   padding: 0.1em;
-  vertical-align: text-bottom;
-  white-space: nowrap;
 }
 
 pre {
