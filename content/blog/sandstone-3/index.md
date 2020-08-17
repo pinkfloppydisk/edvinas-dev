@@ -1,7 +1,6 @@
 ---
 description: TODO
 title: Sandstone - part 3
-draft: true
 date: 2020-07-06
 
 images:
@@ -59,7 +58,7 @@ Another issue was having stripes over the shadows. This one was easy to resolve 
 #### Leaky shadows
 {{<
   gallery
-  "shadows-stripes.jpg" "Shadows leaking light"
+  "shadows-leaky.jpg" "Shadows leaking light"
 >}}
 
 Since I was trying to follow a low-poly aesthetic, I found that simply using no smoothing groups on the models yields nice results. However this causes _gaps_ in between the triangles when they're lit by real-time lights. In order to fix this, I edited each model to use  smoothing groups in Blender and instead used a [shader](https://github.com/Edvinas01/sandstone/blob/master/Assets/Shaders/Shader%20Graphs/Low%20Poly.shadergraph) to achieve the low-poly aesthetic.
