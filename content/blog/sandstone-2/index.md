@@ -85,4 +85,4 @@ After looking at few VR libraries I was quite disappointed with their quality an
 
 In terms of development, I found that spending some time organizing the project is beneficial in the long run. This is even more important when working with Unity as it is too easy to break things without noticing. Having separate scenes for testing features also helps to reduce this risk.
 
-In the next and last part, I'll dive into technical issues that gave me the most head-aches.
+In [part 3](/blog/sandstone-3), I dive into technical issues that gave me the most head-aches.
