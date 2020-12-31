@@ -7,10 +7,10 @@ Make sure you have [Hugo](https://gohugo.io/getting-started/installing) installe
 ## Commands
 Run a development server on `localhost:8080`:
 ```bash
-hugo server --port 8080
+hugo server --port 8080 --buildDrafts
 ```
 
 Build a production ready site under `public` dir:
 ```bash
-hugo --minify
+hugo --minify --buildDrafts
 ```

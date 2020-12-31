@@ -19,7 +19,7 @@ jobs:
         hugo-version: '0.72.0'
 
     - name: Hugo build
-      run: hugo --verbose --minify
+      run: hugo --verbose --minify --buildDrafts
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v2.9.0

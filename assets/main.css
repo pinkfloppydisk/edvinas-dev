@@ -139,7 +139,8 @@ pre {
   .gallery img {
     object-fit: cover;
     margin: 0 0.5em 1em;
-    flex: calc(100% / 3 - 2em);
+    width: calc(100% / 3 - 2em);
+    flex: auto;
   }
 }
 

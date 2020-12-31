@@ -2,6 +2,7 @@
 description: TODO
 title: "Gneiss: A Misshapen Journey"
 date: 2020-12-31
+draft: true
 
 images:
   - /blog/gneiss/game-logo.jpg
@@ -9,7 +10,7 @@ images:
 
 {{<
   gallery
-  "logo.jpg" "Game logo"
+  "game-logo.jpg" "Game logo"
 >}}
 
 ### Intro
@@ -43,7 +44,7 @@ When setting up tooling to manage the source code and project
 #### Automation
 {{<
   gallery
-  "teamcity.jpg" "TeamCity dashboard"
+  "teamcity.png" "TeamCity dashboard"
 >}}
 
 Initially we spun up GitLab CI by following [Automatically building and deploying Unity applications to itch.io](https://johanhelsing.github.io/2020/05/17/gitlab-docker-itch-deploy.html) post by Johan Helsing. This setup was quite handy and quick to setup, but as our projects grew it became way too slow as we had to wait 20+ minutes for a single build to complete. In addition to that, GitLab updated their CI limits to only allow for 400 minutes per group which we already exceeded.
@@ -53,7 +54,7 @@ Afterwards we setup a cheap Linux TeamCity server on DigitalOcean. Setting this 
 One think that worked really well with automated builds were Discord messages. After each successful or failed build a message would be posted to specific Discord channels. This brought attention to failing builds from other disciplines and not only QA and programmers. In addition to that, waiting for our bots named _Pinky_ and _Brain_ to post a message on successful development and release builds was quite charming.
 
 #### Git
-For managing source code we used GitLab with a bunch of different Git clients. We chose GitLab as it allowed for more space per project - 10GB. For the Git clients, we used GitHub Desktop, Sourcetree and Git Bash. Initially I recommended GitHub Desktop for the Designer, Audio and CG teams, but as we progressed with the production, we encountered a lot of problems with it. I wouldn't recommend using GitHub Desktop on large projects.
+For managing source code we used GitLab with a bunch of different Git clients. We chose GitLab as it allowed for more space per project - 10GB. For the Git clients, we used GitHub Desktop, Sourcetree and Git Bash. Initially I recommended GitHub Desktop for the designer, audio and CG teams, but as we progressed with the production, we encountered a lot of problems with it. I wouldn't recommend using GitHub Desktop on large projects.
 
 We used a _simplified_ Git flow model where we had `master`, `develop` and various feature branches. After reviewing and merging features branches to `develop`, we'd merge `develop` into `master`, then tag `master` with a release version, which would then trigger an automated release to Itch.io.
 
@@ -229,22 +230,127 @@ Working with a Unity project and maintaining structure is difficult. Doing so in
 Having so many people working on a Unity project you can't edit the scenes as it creates a ton of conflicts which are pretty much impossible to resolve. To avoid this, we tried to make it so that each feature could stand on its own as a prefab. I think this is the only way to work with Unity in a large team. We managed to achieve this to a certain degree on the programming team, however we had a lot of issues though with the level designers as prefabs were just dropped into the scenes with random connections. The level design could be improved here by splitting up the levels into smaller section prefabs or by using additive scene loading.
 
 #### Trigger prefabs
-TODO
+{{<
+  gallery
+  "triggers.png" "Trigger prefabs"
+  "triggers-wwise.png" "Trigger prefab used with a Wwise component"
+>}}
 
-#### Unity Events
-TODO
+To avoid further bottlenecks on the programmer team we decided to build a set of simple prefabs for the level and audio designers instead of adding all functionality via code. We setup a simple system where each component would expose a set of `UnityEvent` fields which would correspond to a specific actions, e.g. a player entered a trigger.
+
+Using this system we then made a set of nested prefabs and prefab variants where a number of these components would be chained to achieve certain behaviour. For example if we wanted to play audio via Wwise when a player enters a zone, all we had to do was add a `PlayerTrigger` prefab with and slot in a `WwiseEventAdapter` into the `PlayerTrigger` components `UnityEvent` field. This approach removed the bottleneck completely - so much so that the level designers made too many levels with various interactions, we had to cut some as there was not enough time to decorate them.
+
+This was also allowed us to easily abstract interactions with Wwise. Instead of hard-coding communication with Wiwwse via code, we created a bunch of adapter components which would plug into the `UnityEvent` based trigger system.
+
+#### Game Events
+When using prefabs we noticed that it is a chore to wire everything up in the scenes, not to mention that it creates conflicts later on. To avoid this we implemented a system where prefabs would be able to communicate with each other using `ScriptableObject` assets by sending _events_. This system worked great for certain scenarios where we had to trigger some global behaviour, for example player dies - show the game over screen. Using events in some cases meant that the prefabs did not require any setup other than dragging them into the scene as `.asset` files live outside of scene scope. We ported this system to a package [Unity Scriptable Objects](https://github.com/chark/unity-scriptable-objects) with some other things that we used for communication between prefabs.
 
 #### Setup scene
-TODO
+Using our event system it made no sense to use singletons. Due to this, we created a scene which gets injected before the current scene by using additive scene loading. This scene contains manager objects responsible for the game state, UI, etc. Our setup was far from ideal as it meant that during development the project loading times while working from within the editor would be longer.
+
+The core component that enables this is the `RuntimeInitializeOnLoadMethod` attribute which allows to execute code before a scene is loaded:
+```
+public static class SetupSceneInjector
+{
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void InjectSetupScene()
+    {
+        var sceneIndex = Scenes.ActiveSceneBuildIndex;
+        if (sceneIndex.IsSetupScene())
+        {
+            return;
+        }
+
+        InjectSetupScene(sceneIndex);
+    }
+
+    private static void InjectSetupScene(int previousSceneIndex)
+    {
+        SceneManager
+            .LoadSceneAsync(Scenes.SetupSceneBuildIndex)
+            .completed += operation => OnSetupSceneInjected(previousSceneIndex);
+    }
+
+    private static void OnSetupSceneInjected(int previousSceneIndex)
+    {
+        Scenes.SetupSceneBuildIndex.SetActiveScene();
+
+        SceneManager
+            .LoadSceneAsync(previousSceneIndex, LoadSceneMode.Additive)
+            .completed += operation => previousSceneIndex.SetActiveScene();
+    }
+}
+```
+
+In adittion to that, the setup scene contains a `GameObject` with a component that loads the next scene if the current scene is the setup scene:
+```
+public class SceneHandler : MonoBehaviour
+{
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
+    {
+        scene.SetActiveScene();
+        sceneLoadedEvent.RaiseGameEvent();
+
+        // We're on the setup scene, load the next scene (menu scene). In the editor we don't
+        // want this to happen, as it might be useful to test the setup scene as it is.
+#if !UNITY_EDITOR
+        var buildIndex = scene.buildIndex;
+        if (buildIndex.IsSetupScene())
+        {
+            StartCoroutine(LoadScene(menuSceneIndex, false));
+        }
+#endif
+    }
+}
+```
+
+This will work if the setup scene is the first one in the scene build order. Note that this will cause `Awake` and `Start` methods to fire twice while within the editor as it loads the current scene, unloads it and then loads it back in after the setup scene is injected.
 
 #### Core mechanic
-TODO
+{{<
+  gallery
+  "core-mechanic.png" "Core mechanic with a buggy mesh"
+>}}
+
+To implement the core mechanic we had to generate a mesh procedurally based on what the player draws on the screen. Getting mesh generation to work correctly is rather tricky. So much so that only managed to get it working decently nearing the end of production. Even then we had to use an external library [UnityPlumber](https://github.com/federicocasares/unity-plumber) to generate the mesh.
 
 #### Motion Matching
-TODO
+TODO: insert webm here!
+
+One of the requirements from DADIU is that the game must use a [Motion Matching](https://www.gdcvault.com/play/1023280/Motion-Matching-and-The-Road) system. At the time of writing Unity does not have a working system for this, apart from some paid assets. Due to the fact that we had little experience in the programmer team this task was a huge hurdle. We couldn't implement a working system during our first two mini games at all. While working on our final game we still had issues with this until we found a repository [MotionMatching](https://github.com/nashnie/MotionMatching) with a semi working solution which we decided to integrate. The final result was poor, but it worked.
+
+Personally I think using such complex animation system makes no sense in a small game like this. It adds extreme amounts of complexity while offering little control over your animations.
+
+#### Optimization
+TODO: insert birds eye view here!
+
+Even though some of the levels were quite huge, we did not have that many performance problems. The only two issues we encountered were that our custom shader generated a lot of draw calls, did not support batching and also `MeshCollider` optimization problems. Shader related performance problems were resolved by removing reflection probe data while collider problems were resolved by using primitive `BoxCollider` and `SphereCollider` components over most meshes also marking them `Static` where possible.
+
+#### Command console
+TODO: insert command console
+
+The `develop` builds which would be published frequently were mostly used by QA. To aid in testing we implemented a command console which provides a set of commands to switch between scenes, fly around, trigger game events. During initial phases of the project the console was not used that much except during public presentations. However, later on as the features piled up it was quite a valuable tool as you could no longer get to specific parts of the game quickly in order to test them, and also not everyone wanted to open up Unity just to test something where we had an `.exe` sitting in our drive for the latest build.
+
+I think if such a tool were to be used to its fullest potential it has to be implemented from the get go. I think having commands which would allow to setup testing scenarios would be invaluable where one could type a command to receive a string that could be pasted on a Trello ticket to quickly get to a bug.
 
 #### Custom Unity tools
-TODO
+TODO: insert pic of prefab creator, object culling
+
+One of the best features that Unity provides in my opinion is that its extremely easy to extend. For example, during first few weeks of production we noticed that for the CGs in order to create prefabs they have to do a lot of manual work by adding collider components, marking objects as `Static`, etc. We were able to automate this process by adding custom context menus which would require a single click to setup prefabs in bulk.
+
+Another issue we encountered was that at some point some the audio designers couldn't work on the project due to the scenes containing to many objects. They couldn't open up the scenes at all due to the computer dying immediately after opening one of them. We narrowed this issue down to particles and solved it by creating a custom context menu that would disable the particles before opening a scene and re-enable them when saving it to avoid accidental content loss.
+
+For future projects I will try to explore the extensibility provided by Unity even more and I encourage everyone to do so. There is no better feeling that seeing 10+ prefabs setup automatically with a single click where it would normally take lots of manual labour.
 
 ### Closing notes
 TODO
