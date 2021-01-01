@@ -98,13 +98,10 @@ a:hover {
 /* Code and formatted blocks */
 code,
 pre {
-  box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
   background: #eee;
   overflow-x: auto;
-}
-
-pre > code {
-  box-shadow: none;
+  line-height: 1.2;
+  font-size: 0.95em;
 }
 
 code {
