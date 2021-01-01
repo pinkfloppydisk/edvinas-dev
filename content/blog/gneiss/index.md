@@ -6,9 +6,6 @@ date: 2021-01-01
 images:
   - /blog/gneiss/game-logo.jpg
 ---
-TODO: remove unused images
-TODO: add new images
-TODO: add webms
 
 {{<
   gallery
@@ -225,8 +222,8 @@ crashlytics-build.properties
 /Packages/packages-lock.json
 ```
 
-### Programming
-Working with a Unity project and maintaining structure is difficult on its own. Doing so in a team of 7 programmers is even harder. Even though a lot of features in the game are quite simple, having this many programmers made it even harder as it is very hard to keep track of changes in Unity - a single change can break so many unexpected things. Nevertheless, I think we managed to develop a decent enough workflow, if there project were to be re-done, I think most of the issues would be avoided.
+### Workflow & features
+Working with a Unity project and maintaining a clean project is difficult on its own. Doing so in a team of 7 programmers is even harder. Even though a lot of features in the game are quite simple, having this many programmers made it even harder as it is very hard to keep track of changes in Unity - a single change can break so many unexpected things. Nevertheless, I think we managed to develop a decent enough workflow, if there project were to be re-done, I think most of the issues would be avoided.
 
 #### Prefab workflow
 Having so many people working on a Unity project we couldn't directly edit the scenes as it created a ton of conflicts which were pretty much impossible to resolve. To avoid this, we tried to make it so that each feature could stand on its own as a prefab. We managed to achieve this to a certain degree on the programming team, however the level design and CG teams had some issues where a lot of objects were not converted into prefabs and could not be edited outside scenes.
@@ -446,21 +443,25 @@ public static class Scenes
 Note that this will cause lifecycle methods such as `Awake` and `Start` to fire twice when playing the game from the editor. This is due to the problem that I've mentioned previously.
 
 #### Core mechanic
-TODO: add webm showing the core mechanic
+{{< video src="core-mechanic.m4v" >}}
 
-To implement the core mechanic we wanted to generate a mesh procedurally based on what the player draws on the screen. Getting mesh generation to work correctly was rather tricky. We couldn't get it to work properly until the final moments of the production. In the end, we did a bit of searching and used [UnityPlumber](https://github.com/federicocasares/unity-plumber) which worked rather nicely, even though it still has flaws. The takeaway here is that we should have done more research in existing solutions. There are a lot of assets/libraries which could have been used to implement this.
+To implement the core mechanic we wanted to generate a mesh procedurally based on what the player draws on the screen. Getting mesh generation to work correctly was rather tricky. We couldn't get it to work properly until the final moments of the production. In the end, we did a bit of searching and decided to use [UnityPlumber](https://github.com/federicocasares/unity-plumber) which worked rather nicely, even though it still has flaws. The takeaway here is that we should have done more research in existing solutions. There are a lot of assets/libraries which could have been used to implement this.
 
 #### Motion Matching
-TODO: add webm showing the animation
-
 One of the requirements from DADIU is that the game must use a Motion Matching system. Motion Matching is a way of playing animations using large data sets of motion capture data instead of using state machines or blend trees. The benefit of using such a system is that one can achieve extremely realistic animations and transitions between animation frames. The downside is that it can sometimes feel unresponsive. I'd recommend to watch [Motion Matching and The Road to Next-Gen Animation](https://www.gdcvault.com/play/1023280/Motion-Matching-and-The-Road) to get more information on this topic.
 
 At the time of writing this, Unity does not have a fully functioning system for this. There are some paid assets, but I have not tested them. Due to this, implementing Motion Matching was a huge challenge as none of us wanted to build a game which revolves around character animations (this is the reason why we use it only in the first level). We couldn't implement a working system during our first two mini games. While working on our final game we still didn't have a working system until we stumbled upon [MotionMatching](https://github.com/nashnie/MotionMatching) GitHub repository - thank you [nashnie](https://github.com/nashnie)! Using the said repository, we managed to port it over to our game and use our own custom Rokoko animations in combination with animations from Mixamo. The end result was still buggy, but it sufficed.
 
+{{< video src="motion-matching.m4v" >}}
+
 Personally I think using such complex animation system doesn't make much sense in a _small_ game like this. It adds extreme amounts of complexity while offering little control over your animations. However, for large _AAA_ games I think Motion Matching could be an invaluable tool.
 
 #### Performance
-TODO: add pic showing particles and modules
+{{<
+  gallery
+  "cloud-particles.jpg" "Too many cloud particles"
+  "house-modules.jpg" "Stacked house modules with highlighted colliders"
+>}}
 
 For rendering we used URP. This was decided as the art direction for the game did not require that many fancy features. I think this was the right decision as we didn't have that many performance issues related to rendering. We did encounter some problems with our custom shader during the last week of production, however most of them were minor issues. The biggest challenge related to performance was the VFX Graph. We went a bit overboard with some particle systems which tanked performance pretty badly. We didn't want to reduce the particles too much as some scenes relied on having huge emission rates, e.g. clouds. If we had more time however, I think this could be resolved by adding graphics options menu.
 
