@@ -1,6 +1,7 @@
 ---
-description: Long post about game development in a large student team. This post focuses on process related and technical challenges and takeaways that I learned while working on this game.
+description: Process related and technical challenges, takeaways that I learned while working on a game with a large team of students in the DADIU programme.
 title: "Gneiss: A Misshapen Journey"
+updated: 2021-01-03
 date: 2021-01-02
 
 images:
@@ -36,7 +37,7 @@ Following this model we also managed to resolve the previously mentioned bottlen
 #### Platforms
 Initially we used Codecks for managing tasks in our first mini game. It became apparent that in such a large team this platform was not the right fit. It was difficult to split up tasks and keep an overview of what is going on. For the next games we switched to Trello and stuck with that.
 
-For communication, we used Discord. Given how COVID-19 was spiraling out of control during this programme, I think this was the perfect platform. We prepared a bunch of text and voice channels and aggressively chatted over them. To share documents, etc, we used Google Drive which worked quite well.
+For communication, we used Discord. Given how COVID-19 was spiraling out of control during this time, I think this was the perfect platform. We prepared a bunch of text and voice channels per discipline where we discussed specific issues. One thing that worked well here was that the team lads would always sit in the said voice channels and in case anyone has a quick question or didn't want to bounce messages back and forth, they could jump right in and ask away. To share documents, images, etc - we used Google Drive which worked quite well.
 
 ### Project setup
 
