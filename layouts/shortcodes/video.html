@@ -1,4 +1,4 @@
-﻿<video controls lazy>
+﻿<video controls>
   {{ $src := $.Get "src" }}
   {{ $type := $.Get "type" | default "mp4" }}
   <source src="{{ $src }}" type="video/{{ $type }}">

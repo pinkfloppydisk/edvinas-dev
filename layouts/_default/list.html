@@ -1,6 +1,5 @@
-{{ define "main" }}
+{{ define "article" }}
   {{ .Content }}
-
   <div class="articles">
     {{ range sort .Pages "Date" "desc" }}
       <article>
@@ -11,7 +10,7 @@
               title="{{ .Params.title }}"
             >{{ .Params.title }}</a>
           </h3>
-          {{ partial "date" . }}
+          {{ partial "article-date" . }}
         </header>
         <p>
           {{ .Params.description }}

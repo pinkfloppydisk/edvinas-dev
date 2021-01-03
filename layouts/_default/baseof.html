@@ -49,16 +49,14 @@
     </header>
     <main>
       <article>
-        {{ if isset .Params "title" }}
-          <header>
-            <h2>
-              {{ .Params.title }}
-            </h2>
-            {{ partial "date" . }}
-          </header>
-        {{ end }}
-
-        {{ block "main" . }}
+        <header>
+          <h2>
+            {{ .Params.title }}
+          </h2>
+          {{ block "article-subtitle" . }}
+          {{ end }}
+        </header>
+        {{ block "article" . }}
         {{ end }}
       </article>
     </main>

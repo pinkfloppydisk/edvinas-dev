@@ -1,6 +1,0 @@
-{{ if isset .Params "date" }}
-  {{ $formattedDateTime := dateFormat "2006-01-02" .Params.date }}
-  <time datetime="{{ $formattedDateTime }}">
-    {{ dateFormat "2006 Jan 02 Mon" .Params.date }}
-  </time>
-{{ end }}

@@ -170,6 +170,7 @@ video {
 }
 
 /* Misc */
-time {
+.article-date {
+  font-size: 0.9em;
   color: #888;
 }
