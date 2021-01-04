@@ -4,7 +4,7 @@ title: Sandstone - part 3
 date: 2020-08-18
 
 images:
-  - /blog/sandstone-3/screenshot.jpg
+  - /posts/sandstone-3/screenshot.jpg
 ---
 
 {{<
@@ -13,7 +13,7 @@ images:
 >}}
 
 ### Intro
-The last post about my first experiences developing a VR game in Unity called Sandstone. In this post I focus on baked and real-time lighting issues that I've encountered. Also, be sure to checkout [part 2](/blog/sandstone-2) if you haven't already.
+The last post about my first experiences developing a VR game in Unity called Sandstone. In this post I focus on baked and real-time lighting issues that I've encountered. Also, be sure to checkout [part 2](/posts/sandstone-2) if you haven't already.
 
 ### Baking lighting
 I spent a lot of time trying to get lighting right. Using real-time lighting I was having difficulties illuminating darker areas, and the end result was always bland, thus I decided to use real-time lights in combination with baked global illumination.

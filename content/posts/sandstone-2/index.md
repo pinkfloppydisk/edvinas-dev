@@ -4,7 +4,7 @@ title: Sandstone - part 2
 date: 2020-08-17
 
 images:
-  - /blog/sandstone-2/screenshot.jpg
+  - /posts/sandstone-2/screenshot.jpg
 ---
 
 {{<
@@ -13,7 +13,7 @@ images:
 >}}
 
 ### Intro
-This post is a continuation of me writing about my first experiences on working with VR and Unity on a game called Sandstone. In this post I'll briefly talk about on how I setup the project, which libraries I've chosen and what approaches I used when developing the game. Be sure to checkout [part 1](/blog/sandstone-1) if you've missed it.
+This post is a continuation of me writing about my first experiences on working with VR and Unity on a game called Sandstone. In this post I'll briefly talk about on how I setup the project, which libraries I've chosen and what approaches I used when developing the game. Be sure to checkout [part 1](/posts/sandstone-1) if you've missed it.
 
 ### Universal Render Pipeline
 When starting this project I set out to experiment with Universal Render Pipeline (URP). This was a great decision as Shader Graph are is the bomb. Usually I avoid making shaders, however working with Shader Graph was really pleasant. The overall user experience could be a bit better. Some features are still missing and require scripting, though I think with time this will improve.
@@ -85,4 +85,4 @@ After looking at few VR libraries I was quite disappointed with their quality an
 
 In terms of development, I found that spending some time organizing the project is beneficial in the long run. This is even more important when working with Unity as it is too easy to break things without noticing. Having separate scenes for testing features also helps to reduce this risk.
 
-In [part 3](/blog/sandstone-3), I dive into technical issues that gave me the most head-aches.
+In [part 3](/posts/sandstone-3), I dive into technical issues that gave me the most head-aches.

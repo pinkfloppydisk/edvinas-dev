@@ -1,5 +1,5 @@
 ---
-description: First blog entry where I briefly talk about how I came to building this website. I compare and talk about few static website creation tools.
+description: First post where I briefly talk about how I came to building this website. I compare and talk about few static website creation tools.
 title: Hello World
 date: 2019-09-19
 ---

@@ -5,7 +5,7 @@ updated: 2021-01-03
 date: 2021-01-02
 
 images:
-  - /blog/gneiss/game-logo.jpg
+  - /posts/gneiss/game-logo.jpg
 ---
 
 {{<
