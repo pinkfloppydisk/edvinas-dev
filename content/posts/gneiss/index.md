@@ -1,7 +1,7 @@
 ---
 description: Process related and technical challenges, takeaways that I learned while working on a game with a large team of students in the DADIU programme.
 title: "Gneiss: A Misshapen Journey"
-updated: 2021-01-03
+updated: 2021-01-05
 date: 2021-01-02
 
 images:
@@ -444,7 +444,7 @@ Note that this will cause lifecycle methods such as `Awake` and `Start` to fire 
 #### Core mechanic
 {{< video src="core-mechanic.m4v" >}}
 
-To implement the core mechanic we had to generate a mesh procedurally based on what the player draws on the screen. Getting mesh generation to work correctly was rather. We couldn't get it to work properly until the final moments of the production. In the end, we did a bit of searching and stumbled upon [UnityPlumber](https://github.com/federicocasares/unity-plumber) which worked rather nicely, even though it still has flaws. Apart from that a lot of the challenges related to the core mechanic was integration with other features which I think are too specific to comment on.
+To implement the core mechanic we had to generate a mesh procedurally based on what the player draws on the screen. Getting mesh generation to work correctly was difficult. We couldn't get it to work properly until the final moments of the production. In the end, we did a bit of searching and stumbled upon [UnityPlumber](https://github.com/federicocasares/unity-plumber) which worked rather nicely, even though it still has flaws. Apart from that a lot of the challenges related to the core mechanic was integration with other features which I think are too specific to comment on.
 
 I think the key takeaway is that we should have done more research in libraries which could aid in mesh generation. There are a lot of assets/libraries which could have been used to implement this.
 
