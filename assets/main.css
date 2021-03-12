@@ -4,7 +4,7 @@
   font-style: normal;
   font-weight: 400;
   src: url('/OpenSans-Regular.ttf');
-  font-display: swap;
+  font-display: fallback;
 }
 
 @font-face {
