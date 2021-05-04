@@ -41,10 +41,12 @@
           >{{ .Site.Params.name }}</a>
         {{ end }}
       </h1>
+      {{ $current := . }}
       <nav>
         {{ range (union .Site.Sections (where .Site.Pages "Type" "page")) }}
           {{ if ne .Site.Home . }}
             <a
+              {{ if eq $current . }}class="active"{{ end }}
               href="{{ .RelPermalink }}"
               title="{{ .Title }} page"
             >{{ .Title }}</a>

@@ -108,6 +108,10 @@ a {
   color: #ff3c3c;
 }
 
+nav a.active {
+  text-decoration: underline;
+}
+
 a:hover {
   text-decoration: underline;
 }
