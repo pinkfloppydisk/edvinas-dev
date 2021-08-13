@@ -1,5 +1,5 @@
 ---
-description: Music helps keeping the flow of ideas during work. In this post I talk about how I came to specific music genres, artists and why they're interesting.
+summary: Music helps keeping the flow of ideas during work. In this post I talk about how I came to specific music genres, artists and why they're interesting.
 title: Music and work
 date: 2020-01-08
 

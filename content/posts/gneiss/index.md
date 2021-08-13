@@ -1,5 +1,5 @@
 ---
-description: Process related and technical challenges, takeaways that I learned while working on a game with a large team of students in the DADIU programme.
+summary: Process related and technical challenges, takeaways that I learned while working on a game with a large team of students in the DADIU programme.
 title: "Gneiss: A Misshapen Journey"
 updated: 2021-01-05
 date: 2021-01-02
