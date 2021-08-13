@@ -1,3 +1,3 @@
 <div class="article-date">
-  Posted <time>{{ dateFormat "2006-01-02" .Params.date }}</time>{{ with .Params.updated }}, updated <time>{{ dateFormat "2006-01-02" . }}</time> {{ end }}
+  Posted <time>{{ dateFormat "2006-01-02" .Params.publishDate }}</time>{{ if ne .Params.publishDate .Params.lastmod }}, updated <time>{{ dateFormat "2006-01-02" .Params.lastmod }}</time> {{ end }}
 </div>

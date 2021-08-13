@@ -1,7 +1,7 @@
 ---
 summary: In this last post, I talk about issues I've faced with baked and real-time lighting.
 title: Sandstone - part 3
-date: 2020-08-18
+publishDate: 2020-08-18
 
 images:
   - /posts/sandstone-3/screenshot.jpg

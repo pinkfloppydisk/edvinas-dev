@@ -1,7 +1,7 @@
 ﻿---
 summary: Recipe to make dry pancakes which go nicely with tea.
 title: Dry pancakes
-date: 2020-07-21
+publishDate: 2020-07-21
 
 images:
   - /posts/dry-pancakes/prepared_pretty.jpg

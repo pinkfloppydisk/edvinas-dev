@@ -1,7 +1,7 @@
 ---
 summary: In this post, I go into some details of Unity project setup with VR, library choices and few other technical details.
 title: Sandstone - part 2
-date: 2020-08-17
+publishDate: 2020-08-17
 
 images:
   - /posts/sandstone-2/screenshot.jpg

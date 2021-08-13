@@ -1,7 +1,7 @@
 ---
 summary: VR game development is fun and easy with Unity. In this post I talk about my experiences in creating my first VR game called Sandstone.
 title: Sandstone - part 1
-date: 2020-06-29
+publishDate: 2020-06-29
 
 images:
   - /posts/sandstone-1/screenshot.jpg
