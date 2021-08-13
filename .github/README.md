@@ -12,5 +12,5 @@ hugo server --port 8080 --buildDrafts
 
 Build a production ready site under `public` dir:
 ```bash
-hugo --minify --buildDrafts
+hugo --minify
 ```
