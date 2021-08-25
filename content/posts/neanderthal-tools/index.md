@@ -27,6 +27,7 @@ images:
 [Unity XR Interaction Toolkit]: https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@1.0 "Unity XR Interaction Toolkit 1.0 package documentation"
 [OpenXR Plugin]: https://docs.unity3d.com/Packages/com.unity.xr.openxr@1.2/manual/index.html "UnityXR plugin documentation"
 [Multi-Scene editing]: https://docs.unity3d.com/Manual/MultiSceneEditing.html "Unity Multi-Scene editing documentation"
+[Camera Stacking]: https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@12.0/manual/camera-stacking.html "Unity Camera Stacking documentation"
 
 ### Intro
 This year I attained my Master's degree in [Medialogy]. For the final project, me and my colleague [Frederik Stief] have decided to investigate learning aspects in VR without using text or speech. During the project, we collaborated with [COST Action (CA19141)] representatives and expert archeologists when designing the simulation. Here we attained information and feedback in regard to various processes on how Neanderthals made their tools and gathered materials for those tools.
@@ -38,18 +39,33 @@ For the simulation, we utilized [Unity XR Interaction Toolkit]. So far this is t
 
 However, during development we faced some challenges when deploying for different VR headsets, where we had to utilize the [OpenXR Plugin]. We had no issues with Oculus Rift S or Oculus Quest headsets. However, building for SteamVR (we also targeted HTC Vive) posed a lot of problems where the hands would be offset differently, input bindings would not work or weird overlay textures would appear. We resolved some of these problems by installing Beta versions of the Oculus and SteamVR runtimes. However, to fully fix them, we had to create two different builds which was not a pleasant experience. As it stands now, the plugin is not yet ready for production when targeting multiple vendors.
 
-### Multi-scene setup
+### Loading multiple scenes at once
 When working with VR in Unity, an essential feature is smoothly transitioning between scenes. Simply loading a scene via `SceneManager.LoadScene` after fading out the screen, introduces a noticeable stutter which in some cases can prompt the VR runtime to display a loading overlay which ruins the gameplay experience.
 
 The usual approach for this is to utilise `SceneManager.LoadSceneAsync` with `LoadSceneMode.Additive` in addition to always keeping one scene open which acts as an intermediate scene for storing the player prefab. For this project we did just that. However, it was quite annoying having to start the game in a specific scene just to test the entire flow.
 
 For this project we followed a similar approach to the one used in [Gneiss]. This time we utilised [Multi-Scene editing] feature which made the experience of editing two scenes at the same time a lot smoother. The only challenge was to make sure that each time after opening a `.scene` file, the appropriate scenes would load. To solve this we utilised `InitializeOnLoad` and `OnOpenAsset` attributes to hook into appropriate callbacks. You can see this in action in [SceneBootstrapLoader.cs].
 
+TODO: show multi scene loading in action (video?)
+
 We also wanted to ensure that after hitting play, the scenes would activate in the correct order. To do so, we always make sure that the first scene is active via `EditorSceneManager.RestoreSceneManagerSetup` as seen in [SceneBootstrapLoader.cs]. Then, we iterate all loaded scenes one by one and activate them. See `Start` method in [SceneLoader.cs] for an example.
 
 The multi scene setup has been an essential part of my workflow after using it in [Gneiss]. For future projects I might create a small package to avoid having to type out the boilerplate for each project.
 
-### Camera stacking
+### Fading the screen in and out
+To fade the screen in and out there are two approaches as I'm aware of: create a post-processing effect; fade in an overlay UI with the desired color. Since we were lazy, we took the latter approach.
+
+To achieve this we utilized the [Camera Stacking] feature, which allows draw the output of multiple cameras onto the screen. One camera draws the game view while the other draws the UI, which has a white image that we can use to fade in and out. The configuration process is pretty straight forward, however one thing that was really odd was a huge performance hit.
+
+When setting up a camera stack an important flag option to set is the `Culling Mask` or otherwise the setup essentially renders the game twice. Yet even after correctly specifying this in our project we still received a massive performance hit.
+
+TODO: Show performance graphs here
+
+After playing around with camera settings and looking into the Frame Debugger, we found that creating a new renderer which targets only the UI layer and nothing else solves the issue. This renderer is also setup to be used by the UI camera.
+
+TODO: Show screenshots of the RP asset and camera settings
+
+We only spotted this at the end of development as we always thought that the performance penalty was due to running the simulation from within the editor. Only after taking a look into the Frame Debugger we were able to see that the second camera was doing more work than it's supposed to. Talk about an expensive fade screen.
 
 ### Importance of audio
 
