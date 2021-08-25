@@ -47,7 +47,7 @@
         {{ range (union .Site.Sections (where .Site.Pages "Type" "page")) }}
           {{ if ne .Site.Home . }}
             <a
-              {{ if eq $current . }}class="active"{{ end }}
+              {{ if or (eq $current .) (eq $current.Parent . ) }}class="active"{{ end }}
               href="{{ .RelPermalink }}"
               title="{{ .Title }} page"
             >{{ .Title }}</a>
