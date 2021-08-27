@@ -13,49 +13,49 @@ images:
   "simulation.jpg" "Main location in the simulation with the guide character"
 >}}
 
-[Frederik Stief]: https://www.linkedin.com/in/frederikstief "Frederiks LinkedIn page"
-[Rokas Sutkus]: https://sutkusaudio.com "Rokas personal website"
-[Gneiss]: /posts/gneiss/ "Post about Gneiss"
+[devs-frederik-stief]: https://www.linkedin.com/in/frederikstief "Frederiks LinkedIn page"
+[devs-rokas-sutkus]: https://sutkusaudio.com "Rokas personal website"
 
-[Neanderthal Tools]: https://github.com/Edvinas01/neanderthal-tools "Project GitHub repository"
-[SceneBootstrapLoader.cs]: https://github.com/Edvinas01/neanderthal-tools/blob/master/Assets/Scripts/Scenes/Editor/SceneBootstrapLoader.cs "Script for opening multiple scenes at once"
-[SceneLoader.cs]: https://github.com/Edvinas01/neanderthal-tools/blob/master/Assets/Scripts/Scenes/SceneLoader.cs "Script for loading scenes"
+[other-cost]: https://www.cost.eu/cost-action/integrating-neandertal-legacy-from-past-to-present "COST action page"
+[other-study]: https://www.en.aau.dk/education/master/medialogy "Medialogy programme at Aalborg University"
+[other-gneiss]: /posts/gneiss/ "Post about Gneiss"
 
-[COST Action (CA19141)]: https://www.cost.eu/cost-action/integrating-neandertal-legacy-from-past-to-present "COST action page"
-[Medialogy]: https://www.en.aau.dk/education/master/medialogy "Medialogy programme at Aalborg University"
-
-[Unity XR Interaction Toolkit]: https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@1.0 "Unity XR Interaction Toolkit 1.0 package documentation"
-[OpenXR Plugin]: https://docs.unity3d.com/Packages/com.unity.xr.openxr@1.2/manual/index.html "UnityXR plugin documentation"
-[Multi-Scene editing]: https://docs.unity3d.com/Manual/MultiSceneEditing.html "Unity Multi-Scene editing documentation"
-[Camera Stacking]: https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@12.0/manual/camera-stacking.html "Unity Camera Stacking documentation"
+[project]: https://github.com/Edvinas01/neanderthal-tools "Project GitHub repository"
+[project-scene-bootstrap]: https://github.com/Edvinas01/neanderthal-tools/blob/master/Assets/Scripts/Scenes/Editor/SceneBootstrapLoader.cs "Script for opening multiple scenes at once"
+[project-scene-loading]: https://github.com/Edvinas01/neanderthal-tools/blob/master/Assets/Scripts/Scenes/SceneLoader.cs "Script for loading scenes"
+[project-audio-samples]: https://github.com/Edvinas01/neanderthal-tools/tree/master/Assets/Audio "Audio samples recorded for the project"
+[project-audio-scripts]: https://github.com/Edvinas01/neanderthal-tools/tree/master/Assets/Scripts/Audio "Audio scripts"
+[project-hands-tutorial]: https://www.youtube.com/watch?v=6lK8QXL4bxc "VR with Andrew tutorial on how to implement physical hand movement"
+[project-hands-script]: https://github.com/Edvinas01/neanderthal-tools/blob/master/Assets/Scripts/Hands/PhysicsHand.cs "Script used for moving the hands"
+[project-mocap]: https://store.steampowered.com/app/1540000/Mocap_Fusion__VR/ "Motion capture software"
 
 ### Intro
-This year I attained my Master's degree in [Medialogy]. For the final project, me and my colleague [Frederik Stief] have decided to investigate learning aspects in VR without using text or speech. During the project, we collaborated with [COST Action (CA19141)] representatives and expert archeologists when designing the simulation. Here we attained information and feedback in regard to various processes on how Neanderthals made their tools and gathered materials for those tools.
+This year I attained my Master's degree in [Medialogy][other-study]. For the final project, me and my colleague [Frederik Stief][devs-frederik-stief] have decided to investigate learning aspects in VR without using text or speech. During the project, we collaborated with [COST Action (CA19141)][other-cost] representatives and expert archeologists when designing the simulation. Here we attained information and feedback in regard to various processes on how Neanderthals made their tools and gathered materials for those tools.
 
-This post will focus only on some technical aspects of the project. If you're just interested in the end result and source code, see [Neanderthal Tools] (we couldn't come up with a good name).
+This post will focus only on some technical aspects of the project. If you're just interested in the end result and source code, see [Neanderthal Tools][project] (we couldn't come up with a good name).
 
-### Tooling
-For the simulation, we utilized [Unity XR Interaction Toolkit]. So far this is the best solution I have used in Unity for interfacing and working with VR headsets. The components are well-designed and are extensible. The best part is that it works nicely with the new input system Unity provides, which makes the process of rebinding and adding new inputs a breeze.
+### Unity tooling
+We utilized Unity XR Interaction Toolkit. So far this is the best solution I have used in Unity for interfacing and working with VR headsets. The components are well-designed and are extensible. The best part is that it works nicely with the new input system Unity provides, which makes the process of rebinding and adding new inputs a breeze.
 
-However, during development we faced some challenges when deploying for different VR headsets, where we had to utilize the [OpenXR Plugin]. We had no issues with Oculus Rift S or Oculus Quest headsets. However, building for SteamVR (we also targeted HTC Vive) posed a lot of problems where the hands would be offset differently, input bindings would not work or weird overlay textures would appear. We resolved some of these problems by installing Beta versions of the Oculus and SteamVR runtimes. However, to fully fix them, we had to create two different builds which was not a pleasant experience. As it stands now, the plugin is not yet ready for production when targeting multiple vendors.
+However, during development we faced some challenges when deploying for different VR headsets, where we had to utilize the OpenXR Plugin. We had no issues with Oculus Rift S or Oculus Quest headsets. However, building for SteamVR (we also targeted HTC Vive) posed a lot of problems where the hands would be offset differently, input bindings would not work or weird overlay textures would appear. We resolved some of these problems by installing Beta versions of the Oculus and SteamVR runtimes. However, to fully fix them, we had to create two different builds which was not a pleasant experience. As it stands now, the plugin is not yet ready for production when targeting multiple vendors.
 
 ### Loading multiple scenes at once
 When working with VR in Unity, an essential feature is smoothly transitioning between scenes. Simply loading a scene via `SceneManager.LoadScene` after fading out the screen, introduces a noticeable stutter which in some cases can prompt the VR runtime to display a loading overlay which ruins the gameplay experience.
 
 The usual approach for this is to utilise `SceneManager.LoadSceneAsync` with `LoadSceneMode.Additive` in addition to always keeping one scene open which acts as an intermediate scene for storing the player prefab. For this project we did just that. However, it was quite annoying having to start the game in a specific scene just to test the entire flow.
 
-For this project we followed a similar approach to the one used in [Gneiss]. This time we utilised [Multi-Scene editing] feature which made the experience of editing two scenes at the same time a lot smoother. The only challenge was to make sure that each time after opening a `.scene` file, the appropriate scenes would load. To solve this we utilised `InitializeOnLoad` and `OnOpenAsset` attributes to hook into appropriate callbacks. You can see this in action in [SceneBootstrapLoader.cs].
+For this project we followed a similar approach to the one used in [Gneiss][other-gneiss]. This time we utilised Multi-Scene editing feature which made the experience of editing two scenes at the same time a lot smoother. The only challenge was to make sure that each time after opening a `.scene` file, the appropriate scenes would load. To solve this we utilised `InitializeOnLoad` and `OnOpenAsset` attributes to hook into appropriate callbacks. You can see this in action in [SceneBootstrapLoader.cs][project-scene-bootstrap].
 
 TODO: show multi scene loading in action (video?)
 
-We also wanted to ensure that after hitting play, the scenes would activate in the correct order. To do so, we always make sure that the first scene is active via `EditorSceneManager.RestoreSceneManagerSetup` as seen in [SceneBootstrapLoader.cs]. Then, we iterate all loaded scenes one by one and activate them. See `Start` method in [SceneLoader.cs] for an example.
+We also wanted to ensure that after hitting play, the scenes would activate in the correct order. To do so, we always make sure that the first scene is active via `EditorSceneManager.RestoreSceneManagerSetup` as seen in [SceneBootstrapLoader.cs][project-scene-bootstrap]. Then, we iterate all loaded scenes one by one and activate them. See `Start` method in [SceneLoader.cs][project-scene-loading] for an example.
 
-The multi scene setup has been an essential part of my workflow after using it in [Gneiss]. For future projects I might create a small package to avoid having to type out the boilerplate for each project.
+The multi scene setup has been an essential part of my workflow after using it in [Gneiss][other-gneiss]. For future projects I might create a small package to avoid having to set up the boilerplate.
 
 ### Fading the screen in and out
 To fade the screen in and out there are two approaches as I'm aware of: create a post-processing effect; fade in an overlay UI with the desired color. Since we were lazy, we took the latter approach.
 
-To achieve this we utilized the [Camera Stacking] feature, which allows draw the output of multiple cameras onto the screen. One camera draws the game view while the other draws the UI, which has a white image that we can use to fade in and out. The configuration process is pretty straight forward, however one thing that was really odd was a huge performance hit.
+To achieve this we utilized the Camera Stacking feature, which allows draw the output of multiple cameras onto the screen. One camera draws the game view while the other draws the UI, which has a white image that we can use to fade in and out. The configuration process is pretty straight forward, however one thing that was really odd was a huge performance hit.
 
 When setting up a camera stack an important flag option to set is the `Culling Mask` or otherwise the setup essentially renders the game twice. Yet even after correctly specifying this in our project we still received a massive performance hit.
 
@@ -65,10 +65,36 @@ After playing around with camera settings and looking into the Frame Debugger, w
 
 TODO: Show screenshots of the RP asset and camera settings
 
-We only spotted this at the end of development as we always thought that the performance penalty was due to running the simulation from within the editor. Only after taking a look into the Frame Debugger we were able to see that the second camera was doing more work than it's supposed to. Talk about an expensive fade screen.
+We only spotted this at the end of development as we always thought that the performance penalty was due to running the project from within the editor. Only after taking a look into the Frame Debugger we were able to see that the second camera was doing more work than it's supposed to. Talk about an expensive fade screen.
 
-### Importance of audio
+### Designing for realistic audio
+Each interaction in the project provides audio feedback. We decided that each object in the game should sound as realistic as possible. For this we went out and recorded actual audio samples of shattering flint, hitting wooden objects, etc. Special thanks to [Rokas Sutkus][devs-rokas-sutkus] for helping with audio recording and post-processing! You can find the recorded samples [here][project-audio-samples].
+
+TODO: show recording setup pics
+
+Having realistic audio samples greatly increased the immersion, however just by using the samples as they do not sound that great. To increase realism, when executing each action, the samples are randomized and the attenuation, pitch are adjusted based on the applied force during the action. This is a rather simple process, however the results are juicy. You can check out the scripts used to achieve this [here][project-audio-scripts].
+
+TODO: Show a quick video with audio examples
 
 ### Moving virtual hands
+Most VR games I've tried usually move the virtual hands by ignoring the virtual environment. That is, the hands pass through walls and objects, except when executing actions (e.g., grabbing an object). While this approach provides the best accuracy, it has quite a few downsides, the major one is having the ability to push grabbed objects into walls.
 
-### Motion capture
+To workaround this and increase realism, we modeled the hands as physical objects, which are moved physically. To implement this, we followed a great tutorial by [VR with Andrew][project-hands-tutorial], where the hands are moved by applying linear and angular velocities in order to drive them towards the target destination (position of the controllers). You can also checkout our modified [PhysicsHand.cs][project-hands-script] script as well.
+
+TODO: Show a video on how the hands move
+
+However, this approach has its own flaws as well. For example, when holding an object, if the user were to push the object into a wall, it would jump around uncontrollably. I've tried tinkering with applying a varying amount of force based on the resisting collision force, however that introduced oscillations. Additionally, I've also tried playing around with various setups for grabbing objects, however the results were not satisfying as I couldn't find the right values to avoid the aforementioned issues. Though compared to my previous attempts, this is a major step in the right direction.
+
+TODO: Show video with bugs here
+
+For future projects I'll experiment more with joints and will try to test different approaches with parenting. The challenge here though is that such tests will most likely require a completely custom grabbing system. At the moment, Unity XR Interaction Toolkit scripts are is a bit difficult to work with for such an approach.
+
+### Animating via motion capture software for VR
+The major constraint of the project was to avoid using text or speech. To work around this we decided to utilise animations, particles and audio cues to guide the users. The most difficult part was animations as they're extremely time-consuming and are difficult to get right.
+
+To quickly workaround this we looked into motion capture software in order to use our VR headsets and controllers as motion capture devices and handle the rest with Inverse Kinematics. We landed on experimenting with the Beta version of [Mocap Fusion [ VR ]][project-mocap], quickly recorded some simple animations and later post-processed them in Blender to make them loopable.
+
+TODO: Show video with mocap stuff
+
+### Closing notes
+So far this was the most difficult VR project I've worked on as it involved a lot of tweaking. Although the tooling choice this time around was right as it was always clear on what is happening under the hood of Unity XR.
