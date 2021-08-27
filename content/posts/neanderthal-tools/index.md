@@ -58,18 +58,34 @@ To achieve this we utilized the Camera Stacking feature, which allows combine th
 
 When setting up a camera stack, an important option to properly configure is the `Culling Mask` flag or otherwise the engine renders the scene as many times as there are cameras in the stack. Yet even after correctly specifying this option in our project we were still haunted by a massive performance hit.
 
-TODO: Show performance graphs here
+{{<
+  gallery
+  "performance-camera.jpg" "Performance using camera only with Culling Mask property"
+>}}
+
+{{<
+  gallery
+  "performance-renderer.jpg" "Performance using a custom renderer"
+>}}
 
 After playing around with camera settings and looking into the Frame Debugger, we found that creating a new Renderer asset which targets only the UI layer and nothing else solves the issue. We also made sure that this Renderer is used only by the UI camera.
 
-TODO: Show screenshots of the RP asset and camera settings
+{{<
+  gallery
+  "camera.jpg" "Camera component configured to use custom renderer"
+  "camera-renderer.jpg" "Renderer asset configured to render only the UI"
+>}}
 
 We only spotted this at the end of development as we always thought that the performance penalty was due to running the project from within the editor. Only after taking a look into the Frame Debugger we were able to see that the second camera was doing more work than it's supposed to. Talk about an expensive fade screen.
 
 ### Designing realistic audio
 Each interaction in the project has audio feedback. We decided that each object should sound as realistic as possible. For this we went out and recorded actual audio samples of flint, wood and stone. Special thanks to [Rokas Sutkus][devs-rokas-sutkus] for helping with audio recording and post-processing! You can also find the recorded samples [here][project-audio-samples] and use them in your projects.
 
-TODO: show recording setup pics
+{{<
+  gallery
+  "recording-setup.jpg" "Recording setup"
+  "recording-flakes.jpg" "Flint pieces used to record stone sounds"
+>}}
 
 Having realistic audio samples greatly increased the immersion and enjoyment of performing various tasks. Still, just by using the samples without any runtime modifications sounded plain. To solve this and increase realism even more when executing an action, we group the samples into pools, where each call to a pool provides a random sample. After picking a sample we adjust the attenuation and pitch based on the applied force during the action. This is a rather simple process, however the results are juicy. You can check out the scripts used to achieve this [here][project-audio-scripts].
 
