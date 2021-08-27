@@ -1,9 +1,8 @@
 ﻿---
 summary: Building a VR simulation titled Neanderthal Tools with Unity XR, while following archaeological research to represent Neanderthal tool making legacy.
 title: Neanderthal Tools
-publishDate: 2021-08-13
+publishDate: 2021-08-27
 
-draft: true
 images:
 - /posts/neanderthal-tools/simulation.jpg
 ---
