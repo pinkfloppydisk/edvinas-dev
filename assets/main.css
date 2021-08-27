@@ -35,6 +35,12 @@ body {
   margin: 0 auto 4em;
 }
 
+/* Selection */
+::selection {
+  color: #fffaf7;
+  background-color: #ff3c3c;
+}
+
 /* Headers */
 header {
   margin-bottom: 1.5em;
