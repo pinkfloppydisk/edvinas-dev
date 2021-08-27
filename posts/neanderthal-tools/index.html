@@ -67,7 +67,7 @@ Posted <time>2021-08-27</time>
 <a href=/posts/gneiss/ title="Post on Gneiss - DADIU graduation game">Gneiss</a>, where we always keep one scene open for storing various gameplay systems. This time however, we utilised Multi-Scene editing feature which made the experience of editing two scenes at the same time a lot smoother. The only challenge was to make sure that each time after opening a <code>.scene</code> asset the appropriate scenes would load. To solve this we utilised <code>InitializeOnLoad</code> and <code>OnOpenAsset</code> attributes to hook into Unity&rsquo;s callbacks. You can see this in action in
 <a href=https://github.com/Edvinas01/neanderthal-tools/blob/master/Assets/Scripts/Scenes/Editor/SceneBootstrapLoader.cs title="Script for opening multiple scenes at once via an asset" target=_blank rel=noreferrer>SceneBootstrapLoader.cs</a>.</p>
 <video controls>
-<source src=multi-scenes.m4v type=video/mp4>
+<source src=scenes.m4v type=video/mp4>
 </video>
 <p>We also wanted to ensure that after hitting play the scenes would activate in the correct order. To do so, we use <code>EditorSceneManager.RestoreSceneManagerSetup</code> as seen in
 <a href=https://github.com/Edvinas01/neanderthal-tools/blob/master/Assets/Scripts/Scenes/Editor/SceneBootstrapLoader.cs title="Script for opening multiple scenes at once via an asset" target=_blank rel=noreferrer>SceneBootstrapLoader.cs</a>. Then, we iterate all loaded scenes one by one and activate them. See <code>Start</code> method in
