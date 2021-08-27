@@ -1,4 +1,5 @@
-﻿<video controls>
+﻿{{ $poster := .Get "poster" }}
+<video controls {{ with $poster }} poster="{{ . }}"{{ end }}>
   {{ $src := $.Get "src" }}
   {{ $type := $.Get "type" | default "mp4" }}
   <source src="{{ $src }}" type="video/{{ $type }}">
