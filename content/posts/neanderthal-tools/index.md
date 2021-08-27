@@ -44,7 +44,7 @@ When working with VR (and in general any game) in Unity an essential feature is 
 
 For this project we followed a similar approach to the one used in [Gneiss][other-gneiss], where we always keep one scene open for storing various gameplay systems. This time however, we utilised Multi-Scene editing feature which made the experience of editing two scenes at the same time a lot smoother. The only challenge was to make sure that each time after opening a `.scene` asset the appropriate scenes would load. To solve this we utilised `InitializeOnLoad` and `OnOpenAsset` attributes to hook into Unity's callbacks. You can see this in action in [SceneBootstrapLoader.cs][project-scene-bootstrap].
 
-{{< video src="multi-scenes.m4v" >}}
+{{< video src="scenes.m4v" >}}
 
 We also wanted to ensure that after hitting play the scenes would activate in the correct order. To do so, we use `EditorSceneManager.RestoreSceneManagerSetup` as seen in [SceneBootstrapLoader.cs][project-scene-bootstrap]. Then, we iterate all loaded scenes one by one and activate them. See `Start` method in [SceneLoader.cs][project-scene-loading] for an example.
 
