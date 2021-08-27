@@ -45,7 +45,7 @@ When working with VR (and in general any game) in Unity an essential feature is 
 
 For this project we followed a similar approach to the one used in [Gneiss][other-gneiss], where we always keep one scene open for storing various gameplay systems. This time however, we utilised Multi-Scene editing feature which made the experience of editing two scenes at the same time a lot smoother. The only challenge was to make sure that each time after opening a `.scene` asset the appropriate scenes would load. To solve this we utilised `InitializeOnLoad` and `OnOpenAsset` attributes to hook into appropriate callbacks. You can see this in action in [SceneBootstrapLoader.cs][project-scene-bootstrap].
 
-TODO: show multi scene loading in action (video?)
+{{< video src="multi-scenes.m4v" >}}
 
 We also wanted to ensure that after hitting play the scenes would activate in the correct order. To do so, we ensure the correct activation order via `EditorSceneManager.RestoreSceneManagerSetup` as seen in [SceneBootstrapLoader.cs][project-scene-bootstrap]. Then, we iterate all loaded scenes one by one and activate them. See `Start` method in [SceneLoader.cs][project-scene-loading] for an example.
 
@@ -60,7 +60,7 @@ When setting up a camera stack, an important option to properly configure is the
 
 TODO: Show performance graphs here
 
-After playing around with camera settings and looking into the Frame Debugger, we found that creating a new renderer asset which targets only the UI layer and nothing else solves the issue. This renderer is also setup to be used only by the UI camera.
+After playing around with camera settings and looking into the Frame Debugger, we found that creating a new Renderer asset which targets only the UI layer and nothing else solves the issue. We also made sure that this Renderer is used only by the UI camera.
 
 TODO: Show screenshots of the RP asset and camera settings
 
@@ -73,29 +73,27 @@ TODO: show recording setup pics
 
 Having realistic audio samples greatly increased the immersion and enjoyment of performing various tasks. Still, just by using the samples without any runtime modifications sounded plain. To solve this and increase realism even more when executing an action, we group the samples into pools, where each call to a pool provides a random sample. After picking a sample we adjust the attenuation and pitch based on the applied force during the action. This is a rather simple process, however the results are juicy. You can check out the scripts used to achieve this [here][project-audio-scripts].
 
-TODO: Show a quick video with audio examples
+{{< video src="audio.m4v" >}}
 
 ### Moving virtual hands
 Most VR games I've tried usually move the virtual hands by ignoring the virtual environment. That is, the hands pass through walls and objects, except when executing actions (e.g., grabbing an object). While this approach provides great accuracy, it has quite a few downsides, the major one is having the ability to push grabbed objects through walls.
 
 To workaround this and increase realism, we modeled the hands as physical objects which are moved physically. We followed a great tutorial by [VR with Andrew][project-hands-tutorial], where they move the hands by applying linear and angular velocities in order to drive them towards the target destination (orientation of the controllers). You can also checkout our modified [PhysicsHand.cs][project-hands-script] script as well.
 
-TODO: Show a video on how the hands move
-
 However, this approach has its own flaws. For example, when holding an object, if the user were to push the object into a wall, it would jump around uncontrollably. We've tried tinkering with applying a varying amount of force based on the resisting collision force, however that introduced oscillations. Additionally, We've also tried playing around with various setups for grabbing objects, however the results were not satisfying as we couldn't find the right values to avoid the aforementioned issues. Though compared to my previous prototypes, this is a major step in the right direction.
 
-TODO: Show video with bugs here
+{{< video src="hands.m4v" >}}
 
 For future projects I'll experiment more with joints and will try to test different approaches with parenting. The challenge here though is that such tests will most likely require a completely custom grabbing system. At the moment, Unity XR Interaction Toolkit scripts are a bit difficult to work with for such an approach as most of their existing functionality has to be thrown out.
 
 ### Animating via VR motion capture software
 The major constraint of the project was to avoid using text or speech. To work around this we decided to utilise animations, particles and audio cues to guide the users. The particle systems and audio cues were rather simple to work with, however for animations we wanted to have a guide character which would show the actions the user has to perform.
 
-TODO: pic of the guide?
+{{< video src="animations.m4v" >}}
 
 To quickly implement animations we looked into motion capture software, as we wanted to use our VR headsets and controllers as motion capture devices and handle the rest with Inverse Kinematics (IK). We landed on experimenting with the Beta version of [Mocap Fusion [ VR ]][project-mocap] which had everything we needed, including IK. We quickly recorded some simple animations and later post-processed them in Blender to make them loopable. The result was surprisingly good - well at least better than anything we could animate by hand.
 
-TODO: Show video with mocap stuff
+{{< video src="animations-mocap.m4v" >}}
 
 ### Closing notes
 So far this was the most difficult VR project I've worked on as it involved a lot of tweaking and designing based on research. However, the tooling choice this time around was right as it was always clear on what is happening under the hood of Unity XR. For future projects I'll definitely utilise Unity XR event more and hopefully the Open XR plugin improves as well to make deployment a bit easier.
