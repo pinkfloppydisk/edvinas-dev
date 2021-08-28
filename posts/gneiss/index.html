@@ -442,7 +442,7 @@ public class ColliderTrigger : MonoBehaviour
 </code></pre>
 <p>Note that this will cause lifecycle methods such as <code>Awake</code> and <code>Start</code> to fire twice when playing the game from the editor. This is due to the problem that I&rsquo;ve mentioned previously.</p>
 <h4 id=core-mechanic>Core mechanic</h4>
-<video controls>
+<video controls preload=metadata>
 <source src=core-mechanic.m4v type=video/mp4>
 </video>
 <p>To implement the core mechanic we had to generate a mesh procedurally based on what the player draws on the screen. Getting mesh generation to work correctly was difficult. We couldn&rsquo;t get it to work properly until the final moments of the production. In the end, we did a bit of searching and stumbled upon
@@ -454,7 +454,7 @@ public class ColliderTrigger : MonoBehaviour
 <p>At the time of writing this, Unity does not have a fully functioning system for this. There are some paid assets, but I have not tested them. Due to this, implementing Motion Matching was a huge challenge as none of us wanted to build a game which revolves around character animations. We couldn&rsquo;t implement a working system during our first two mini games (this is the reason why we use it only in the first level and during the flashback). While working on our final game we still didn&rsquo;t have a working system until we stumbled upon
 <a href=https://github.com/nashnie/MotionMatching target=_blank rel=noreferrer>MotionMatching</a> GitHub repository (thank you
 <a href=https://github.com/nashnie target=_blank rel=noreferrer>nashnie</a>). We managed to implement the said repository into our game and use our own custom Rokoko animations in combination with animations from Mixamo. The end result was still buggy, but it sufficed.</p>
-<video controls>
+<video controls preload=metadata>
 <source src=motion-matching.m4v type=video/mp4>
 </video>
 <p>Personally I think using such complex animation system doesn&rsquo;t make much sense in a <em>small</em> game like this. It adds extreme amounts of complexity while offering little control over animations. However, for large or <em>AAA</em> games I think Motion Matching could be an invaluable tool.</p>

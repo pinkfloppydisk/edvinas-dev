@@ -45,7 +45,7 @@ Neanderthal Tools
 Posted <time>2021-08-27</time>
 </div>
 </header>
-<video controls poster=neanderthal-tools.jpg>
+<video controls preload=metadata poster=neanderthal-tools.jpg>
 <source src=neanderthal-tools.m4v type=video/mp4>
 </video>
 <h3 id=intro>Intro</h3>
@@ -66,7 +66,7 @@ Posted <time>2021-08-27</time>
 <p>For this project we followed a similar approach to the one used in
 <a href=/posts/gneiss/ title="Post on Gneiss - DADIU graduation game">Gneiss</a>, where we always keep one scene open for storing various gameplay systems. This time however, we utilised Multi-Scene editing feature which made the experience of editing two scenes at the same time a lot smoother. The only challenge was to make sure that each time after opening a <code>.scene</code> asset the appropriate scenes would load. To solve this we utilised <code>InitializeOnLoad</code> and <code>OnOpenAsset</code> attributes to hook into Unity&rsquo;s callbacks. You can see this in action in
 <a href=https://github.com/Edvinas01/neanderthal-tools/blob/master/Assets/Scripts/Scenes/Editor/SceneBootstrapLoader.cs title="Script for opening multiple scenes at once via an asset" target=_blank rel=noreferrer>SceneBootstrapLoader.cs</a>.</p>
-<video controls>
+<video controls preload=metadata>
 <source src=scenes.m4v type=video/mp4>
 </video>
 <p>We also wanted to ensure that after hitting play the scenes would activate in the correct order. To do so, we use <code>EditorSceneManager.RestoreSceneManagerSetup</code> as seen in
@@ -100,7 +100,7 @@ Posted <time>2021-08-27</time>
 </div>
 <p>Having realistic audio samples greatly increased the immersion and enjoyment, both of us were quite amazed by how the weight of each action changes. Still, just by using the samples without any runtime modifications sounded plain. To solve this and increase realism even more when executing an action, we group the samples into pools, where each call to a pool provides a random sample. After picking a sample we adjust the attenuation and pitch based on the applied force during the action. This is a rather simple process, however the results are juicy. You can check out the scripts used to achieve this
 <a href=https://github.com/Edvinas01/neanderthal-tools/tree/master/Assets/Scripts/Audio title="Audio scripts" target=_blank rel=noreferrer>here</a>.</p>
-<video controls>
+<video controls preload=metadata>
 <source src=audio.m4v type=video/mp4>
 </video>
 <h3 id=moving-virtual-hands>Moving virtual hands</h3>
@@ -109,18 +109,18 @@ Posted <time>2021-08-27</time>
 <a href="https://www.youtube.com/watch?v=6lK8QXL4bxc" title="VR with Andrew tutorial on how to implement physical hand movement" target=_blank rel=noreferrer>VR with Andrew</a>, where they move the hands by applying linear and angular velocities in order to drive them towards the target destination (orientation of the controllers). You can also checkout our modified
 <a href=https://github.com/Edvinas01/neanderthal-tools/blob/master/Assets/Scripts/Hands/PhysicsHand.cs title="Script used for phyiscally moving the virtual hands" target=_blank rel=noreferrer>PhysicsHand.cs</a> script as well.</p>
 <p>However, this approach has its own flaws. For example, when holding an object if the user were to push the object into a wall, it would jump around uncontrollably. We&rsquo;ve tried tinkering with applying a varying amount of force based on the resisting collision force, however that introduced oscillations. Additionally, we tried messing around with various Joint setups for grabbing objects, however the results were not satisfying as we couldn&rsquo;t find the right values to avoid the aforementioned issues. Though compared to my previous prototypes, this is a major step in the right direction.</p>
-<video controls>
+<video controls preload=metadata>
 <source src=hands.m4v type=video/mp4>
 </video>
 <p>For future projects I&rsquo;ll experiment more with Joints and will try to test different approaches with parenting. The challenge here though is that such tests will most likely require a completely custom grabbing system. At the moment, Unity XR Interaction Toolkit scripts are a bit difficult to work with for such an approach as most of their existing functionality has to be thrown out.</p>
 <h3 id=animating-via-vr-motion-capture-software>Animating via VR motion capture software</h3>
 <p>The major constraint of the project was to avoid using text or speech. To work around this we decided to utilise animations, particles and audio cues to guide the users. The particle systems and audio cues were rather simple to work with, however for animations we wanted to have a guide character which would show the actions the user has to perform, which introduced quite a lot of complexity.</p>
-<video controls>
+<video controls preload=metadata>
 <source src=animations.m4v type=video/mp4>
 </video>
 <p>To quickly implement animations, we looked into motion capture software as we wanted to use our VR headsets and controllers as motion capture devices, and handle the rest with Inverse Kinematics (IK). We landed on experimenting with the Beta version of
 <a href=https://store.steampowered.com/app/1540000/Mocap_Fusion__VR/ title="Motion capture software" target=_blank rel=noreferrer>Mocap Fusion [ VR ]</a> which had everything we needed, including IK. We quickly recorded some simple animations and later post-processed them in Blender to make them loopable. The result was surprisingly good - well at least better than anything we could animate by hand.</p>
-<video controls>
+<video controls preload=metadata>
 <source src=animations-mocap.m4v type=video/mp4>
 </video>
 <h3 id=closing-notes>Closing notes</h3>
