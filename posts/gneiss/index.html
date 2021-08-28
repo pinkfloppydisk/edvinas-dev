@@ -443,7 +443,7 @@ public class ColliderTrigger : MonoBehaviour
 <p>Note that this will cause lifecycle methods such as <code>Awake</code> and <code>Start</code> to fire twice when playing the game from the editor. This is due to the problem that I&rsquo;ve mentioned previously.</p>
 <h4 id=core-mechanic>Core mechanic</h4>
 <video controls preload=metadata>
-<source src=core-mechanic.m4v type=video/mp4>
+<source src="core-mechanic.m4v#t=0.001" type=video/mp4>
 </video>
 <p>To implement the core mechanic we had to generate a mesh procedurally based on what the player draws on the screen. Getting mesh generation to work correctly was difficult. We couldn&rsquo;t get it to work properly until the final moments of the production. In the end, we did a bit of searching and stumbled upon
 <a href=https://github.com/federicocasares/unity-plumber target=_blank rel=noreferrer>UnityPlumber</a> which worked rather nicely, even though it still has flaws. Apart from that a lot of the challenges related to the core mechanic was integration with other features which I think are too specific to comment on.</p>
@@ -455,7 +455,7 @@ public class ColliderTrigger : MonoBehaviour
 <a href=https://github.com/nashnie/MotionMatching target=_blank rel=noreferrer>MotionMatching</a> GitHub repository (thank you
 <a href=https://github.com/nashnie target=_blank rel=noreferrer>nashnie</a>). We managed to implement the said repository into our game and use our own custom Rokoko animations in combination with animations from Mixamo. The end result was still buggy, but it sufficed.</p>
 <video controls preload=metadata>
-<source src=motion-matching.m4v type=video/mp4>
+<source src="motion-matching.m4v#t=0.001" type=video/mp4>
 </video>
 <p>Personally I think using such complex animation system doesn&rsquo;t make much sense in a <em>small</em> game like this. It adds extreme amounts of complexity while offering little control over animations. However, for large or <em>AAA</em> games I think Motion Matching could be an invaluable tool.</p>
 <h4 id=performance>Performance</h4>
