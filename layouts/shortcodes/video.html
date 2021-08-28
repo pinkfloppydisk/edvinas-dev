@@ -3,5 +3,5 @@
 <video controls preload="{{ $preload }}"{{ with $poster }} poster="{{ . }}"{{ end }}>
   {{ $src := $.Get "src" }}
   {{ $type := $.Get "type" | default "mp4" }}
-  <source src="{{ $src }}" type="video/{{ $type }}">
+  <source src="{{ $src }}{{ if not $poster }}#t=0.001{{ end }}" type="video/{{ $type }}">
 </video>
