@@ -1,5 +1,5 @@
 ---
-title: Thanks
+title: Contact
 ---
 
 [Dovydas Reitelaitis]: https://www.instagram.com/reitelaitis "Dovydas Reitelaitis instagram page"
