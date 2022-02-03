@@ -1,6 +1,6 @@
 This favicon was generated using the following font:
 
-- Font Title: IBM Plex Mono
-- Font Author: Copyright 2017 IBM Corp. All rights reserved.
-- Font Source: http://fonts.gstatic.com/s/ibmplexmono/v7/-F63fjptAgt5VM-kVkqdyU8n5igg1l9kn-s.ttf
+- Font Title: Leckerli One
+- Font Author: Copyright (c) 2011 Gesine Todt (www.gesine-todt.de), with Reserved Font Names "Leckerli"
+- Font Source: http://fonts.gstatic.com/s/leckerlione/v14/V8mCoQH8VCsNttEnxnGQ-1itLZxcBtItFw.ttf
 - Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))

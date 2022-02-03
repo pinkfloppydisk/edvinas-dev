@@ -3,7 +3,7 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
-  src: url('/OpenSans-Regular.ttf');
+  src: url('/Paragon-Regular.otf');
   font-display: fallback;
 }
 
@@ -23,7 +23,7 @@ html {
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Paragon', serif;
   line-height: 1.5;
 
   background-color: #fff;
