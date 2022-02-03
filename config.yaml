@@ -1,3 +1,6 @@
+footnotereturnlinkcontents: ↩
+
+
 disableHugoGeneratorInject: true
 disableKinds:
   - taxonomy
@@ -22,3 +25,8 @@ params:
   name: pinkfloppydisk
   images:
     - icon.png
+    
+outputFormats:
+  RSS:
+    mediatype: application/rss
+    baseName: atom
