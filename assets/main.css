@@ -104,7 +104,7 @@ h1 {
 }
 
 h2 {
-  margin-bottom: 0.3em;
+  margin-bottom: 1.3em;
   font-size: 1.5em;
 }
 
@@ -181,7 +181,7 @@ video {
 
 /* Article list */
 .articles article {
-  margin-bottom: inherit;
+  margin-bottom: 1.5em;
 }
 
 /* Misc */
