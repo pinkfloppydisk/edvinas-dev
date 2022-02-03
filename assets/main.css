@@ -19,7 +19,7 @@
 html {
   overflow-y: scroll;
   padding: 0;
-  margin: 0;
+  margin: 0.4;
 }
 
 body {
@@ -31,7 +31,7 @@ body {
 
   max-width: 40em;
   font-size: 18px;
-  padding: 1em;
+  padding: 1.2em;
   margin: 0 auto 4em;
 }
 
@@ -109,7 +109,7 @@ h2 {
 }
 
 h3 {
-  font-size: 1.17em;
+  font-size: 1.2em;
 }
 
 h4 {
@@ -181,11 +181,11 @@ video {
 
 /* Article list */
 .articles article {
-  margin-bottom: 1.5em;
+  margin-bottom: 1.3em;
 }
 
 /* Misc */
 .article-date {
-  font-size: 0.5em;
+  font-size: 0.7em;
   color: #888;
 }
