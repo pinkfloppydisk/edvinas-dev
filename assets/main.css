@@ -64,7 +64,7 @@ header {
   align-items: center;
   flex-flow: row wrap;
 
-  margin-bottom: 4em;
+  margin-bottom: 2em;
 }
 
 .navigation h1 {
@@ -125,9 +125,6 @@ nav a.active {
   text-decoration: underline #007afc;
 }
 
-nav a.active {
-    text-decoration: underline #007afc;
-  }
 
 /* Code and formatted blocks */
 code,
