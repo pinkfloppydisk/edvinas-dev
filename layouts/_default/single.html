@@ -1,3 +1,12 @@
 {{ define "article" }}
   {{ .Content }}
+
+  {{ if eq .Type "article" }}
+  <br>
+  <br>
+    Published on <time>{{ .Date.Format "January 2, 2006" }}</time>
+  {{ end }}
 {{ end }}
+
+
+
