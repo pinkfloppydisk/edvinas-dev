@@ -64,7 +64,7 @@ header {
   align-items: center;
   flex-flow: row wrap;
 
-  margin-bottom: 2em;
+  margin-bottom: 1.5em;
 }
 
 .navigation h1 {
@@ -104,7 +104,7 @@ h1 {
 }
 
 h2 {
-  margin-bottom: 0.5em;
+  margin-bottom: 0.3em;
   font-size: 1.5em;
 }
 
@@ -181,7 +181,7 @@ video {
 
 /* Article list */
 .articles article {
-  margin-bottom: 1.5em;
+  margin-bottom: 1.8em;
 }
 
 /* Misc */
