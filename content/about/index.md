@@ -1,5 +1,6 @@
 ---
 title: About
+weight: 1
 ---
 
 My name is Edvinas Danevičius. I'm a developer who loves JVM and its ecosystem. I mostly write back-end applications with Java and/or Kotlin. However, from time to time I dip my nose into game development and front-end web applications as well.

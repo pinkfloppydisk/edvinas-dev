@@ -1,5 +1,5 @@
 ---
-title: Home
+title: 
 ---
 
 This is a site where I write about tech, video games, random non-tech stuff, personal projects and alike. Checkout links scattered around this site, you might find something useful.

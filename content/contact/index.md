@@ -1,5 +1,6 @@
 ---
 title: Contact
+weight: 3
 ---
 
 [Dovydas Reitelaitis]: https://www.instagram.com/reitelaitis "Dovydas Reitelaitis instagram page"

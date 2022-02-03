@@ -17,8 +17,8 @@ markup:
       xHTML: true
 
 params:
-  description: Programming, video games, music and other funky things
-  author: Edvinas Danevičius
-  name: edvinas.dev
+  description: technology, humans, explorations, web
+  author: pinkfloppydisk
+  name: pinkfloppydisk
   images:
     - icon.png
