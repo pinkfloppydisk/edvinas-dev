@@ -187,9 +187,6 @@ video {
   color: #333; display: block; box-shadow: none; text-decoration: none; }
   a:hover { color: #007AFC; }
 
-.description {
- margin-bottom: 0,1em;
-}
 
 /* Misc */
 .article-date {

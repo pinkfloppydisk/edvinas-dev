@@ -13,7 +13,7 @@
           {{ partial "article-date" . }}
         </header>
         <p>
-          {{ partial "description" . }}
+          {{ .Params.summary }}
         </p>
       </article>
     {{ end }}
