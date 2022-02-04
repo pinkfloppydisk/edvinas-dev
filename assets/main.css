@@ -129,10 +129,12 @@ nav a.active {
 /* Code and formatted blocks */
 code,
 pre {
-  background: #eee;
+  color: #fff;
+  background: rgba(53,116,224,.9);
   overflow-x: auto;
   font-size: 14px;
   font-family: 'Fira Code', monospace;
+  border-radius: 3px;
 }
 
 code {
