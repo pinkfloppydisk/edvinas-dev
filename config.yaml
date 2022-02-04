@@ -1,4 +1,6 @@
 footnotereturnlinkcontents: ↩
+
+
 disableHugoGeneratorInject: true
 disableKinds:
   - taxonomy
