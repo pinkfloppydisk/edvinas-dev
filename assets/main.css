@@ -184,10 +184,13 @@ video {
 /* Article list */
 .articles article {
   margin-bottom: 1.3em;
-}
+  color: #333; display: block; box-shadow: none; text-decoration: none; }
+  a:hover { color: #007AFC; }
+
 
 /* Misc */
 .article-date {
   font-size: 0.7em;
   color: #888;
 }
+
