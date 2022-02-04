@@ -185,18 +185,12 @@ video {
 .articles article {
   margin-bottom: 1.3em;
   color: #333; display: block; box-shadow: none; text-decoration: none; }
-  a:hover { 
-  color: #007AFC; 
+  a:hover { color: #007AFC; }
 
-  }
-.summary {
-  margin-bottom: 0.1em; 
-
-}
 
 /* Misc */
 .article-date {
   font-size: 0.9em;
   color: rgb(70, 70, 70);
-
 }
+
