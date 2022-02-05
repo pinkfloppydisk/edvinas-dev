@@ -3,7 +3,7 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
-  src: url('/Paragon-Regular.otf');
+  src: url('/Inter-Medium.otf');
   font-display: fallback;
 }
 
@@ -23,7 +23,7 @@ html {
 }
 
 body {
-  font-family: 'Paragon', serif;
+  font-family: 'Inter', sans-serif;
   line-height: 1.5;
 
   background-color: #fff;
@@ -81,8 +81,9 @@ h2,
 h3,
 h4 {
   font-weight: 500;
-  color: #000; }
-  a:hover { color: #007AFC; }
+  color: #000; 
+}
+  a:hover { color: #007AFC; 
 }
 
 h1 a {
@@ -184,7 +185,7 @@ video {
 
 /* Article list */
 .articles article {
-  margin-bottom: 1.3em;
+  margin-bottom: 1.1em;
   color: #333; display: block; box-shadow: none; text-decoration: none; }
   a:hover { color: #007AFC;
   
