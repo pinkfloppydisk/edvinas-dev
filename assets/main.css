@@ -82,6 +82,7 @@ h3,
 h4 {
   font-weight: 500;
   color: #000; 
+  margin-top: -25px;margin-bottom: 25px;
 }
   a:hover { color: #007AFC; 
 }
