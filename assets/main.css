@@ -80,8 +80,9 @@ h1,
 h2,
 h3,
 h4 {
-  font-weight: 100;
-  color: #000;
+  font-weight: 500;
+  color: #000; }
+  a:hover { color: #007AFC; }
 }
 
 h1 a {
@@ -185,12 +186,14 @@ video {
 .articles article {
   margin-bottom: 1.3em;
   color: #333; display: block; box-shadow: none; text-decoration: none; }
-  a:hover { color: #007AFC; }
+  a:hover { color: #007AFC;
+  
+}
 
 
 /* Misc */
 .article-date {
-  font-size: 0.9em;
-  color: rgb(70, 70, 70);
+  font-size: 0.8em;
+  color: rgb(119, 119, 119);
 }
 
